@@ -1,6 +1,6 @@
 import "./App.css";
-import Complain from "./components/complain/complain";
-import Track from "./components/track/track";
+import Complain from "./components/complain/Complain";
+import Track from "./components/track/Track";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
