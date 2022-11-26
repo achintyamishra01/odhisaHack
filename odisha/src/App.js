@@ -1,11 +1,10 @@
-
 import './App.css';
-
+import Complain from './components/complain/Complain';
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+    <Complain></Complain>
+    </>
   );
 }
 

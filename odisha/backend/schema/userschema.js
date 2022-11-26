@@ -28,10 +28,15 @@ const UserSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    municipality:{
+        type:String,
+        required:true
+    },
     status:{
         type:String,
         default:"pending"
     }
+
 });
 
 module.exports = mongoose.model("odisha",UserSchema );

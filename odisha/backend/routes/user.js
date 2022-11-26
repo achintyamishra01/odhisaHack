@@ -3,6 +3,12 @@ const router = express.Router();
 const user = require('../schema/userschema')
 // const bcrypt = require("bcrypt");
 
+const arr=[
+    {"750017":"Bhubaneshwar Municipal Corporation"},
+   
+    {"768006":"Sambalpur Municipal Corporation"}
+    
+]
 router.post('/complain', (req, res) => {
 
     let pincode = parseInt(req.body.pincode);
@@ -35,5 +41,9 @@ router.post('/track', async (req, res) => {
         res.status(200).json({ success: true, message: "TicketId doesnot exist" });
     }
 });
+router.post("/municipality",async(req,res)=>{
+    res.status(200).json({success:true,data:arr,message:"data_sent"})
+});
+ 
 
 module.exports = router;
