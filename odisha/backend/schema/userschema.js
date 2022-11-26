@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     ticketId:{
-        type:Number,
-        required:true
+        type:String,
     },
     name: {
         type: String,
         required: true
     },
-    
     pincode:{
         type:Number,
         required:true
