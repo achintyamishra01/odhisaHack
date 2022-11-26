@@ -60,6 +60,7 @@ const Complain = () => {
       console.log(municipality)
       console.log(name)
       const ele={name,phone,address,pincode,municipality}
+      
       const res = await fetch("/api/complain", {
         method: "POST",
         headers: {

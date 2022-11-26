@@ -1,6 +1,7 @@
 import React from "react";
 
 const track = () => {
+  const [first, setfirst] = useState(second)
   return (
     <div>
       <form action="/" method="get">
