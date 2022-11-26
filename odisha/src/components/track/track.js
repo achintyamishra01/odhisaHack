@@ -1,10 +1,9 @@
 import React from "react";
 
 const track = () => {
-  const [first, setfirst] = useState(second)
   return (
-    <div>
-      <form action="/" method="get">
+    <div className="form-container">
+      <form action="/" method="get" className="Form">
         <label htmlFor="complaint_Ticket"> Enter the Ticket ID</label>
         <input type="text" name="complaint_Ticket" id="complaint_Ticket" />
         <input type="submit" value="submit" />

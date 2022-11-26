@@ -48,9 +48,9 @@ router.post("/complain", (req, res) => {
     name: req.body.name,
     pincode: pincode,
     address: req.body.address,
-    // e_waste: req.body.e_waste,
+    e_waste: req.body.e_waste,
     phone: phone,
-    // gov_com: req.body.gov_com,
+    gov_com: req.body.gov_com,
     ticketId: ticketId,
     municipality: municipality,
   });
