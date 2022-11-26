@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 const Complain = () => {
     const [name, setname] = useState("")
-    const [phone, setphone] = useState()
+    const [phone, setphone] = useState("")
     const [address, setaddress] = useState("")
     const [pincode, setpincode] = useState('')
     // const [e_waste, sete_waste] = useState(false)
@@ -37,7 +37,7 @@ const Complain = () => {
         if(e.target.name==='name'){
             setname(e.target.value)
         }
-        if(e.target.phone==='phone'){
+        if(e.target.name==='phone'){
             setphone(e.target.value)
         }
         if(e.target.name==='address'){
@@ -53,7 +53,24 @@ const Complain = () => {
         
      
     }
-    const handleSubmit=()=>{}
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
+      console.log(pincode)
+      console.log(phone)
+      console.log(municipality)
+      console.log(name)
+      const ele={name,phone,address,pincode,municipality}
+      const res = await fetch("/api/complain", {
+        method: "POST",
+        headers: {
+          
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(ele),
+      });
+      const c=await res.json();
+      console.log(c)
+    }
   return (
     <>
     <form action="" method='POST'>
