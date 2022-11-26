@@ -23,8 +23,7 @@ router.post("/complain", (req, res) => {
     gov_com: req.body.gov_com,
     ticketId: ticketId,
   });
-  //   send_SMS(phone);  // UNCOMMENT THIS
-
+    // send_SMS(phone,ticketId);  // UNCOMMENT THIS
   res
     .status(200)
     .json({
@@ -48,10 +47,12 @@ router.post("/track", async (req, res) => {
   }
 });
 
-function send_SMS(num) {
+function send_SMS(num,ticketId) {
+    let mes= `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
+    console.log(mes);
   client.messages
     .create({
-      body: "Hello from Node",
+      body:mes,
       to: "+91" + num, // Text this number
       from: "+15139604746", // From Twilio number
     })
