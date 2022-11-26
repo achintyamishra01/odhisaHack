@@ -8,7 +8,7 @@ connectDB();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-// app.use('/api/',require('./routes/login_saving'));
+app.use('/api/',require('./routes/user.js'));
 
 app.get('/',(req,res)=>{
     res.send("h");

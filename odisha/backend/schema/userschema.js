@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
- 
+    
     pincode:{
         type:Number,
         required:true
@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    gov:{
+    gov_com:{
         type:Boolean,
         default:false
     }
