@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
     gov_com:{
         type:Boolean,
         default:false
+    },
+    status:{
+        type:String,
+        default:"pending"
     }
 });
 

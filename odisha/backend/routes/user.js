@@ -23,4 +23,17 @@ router.post('/complain', (req, res) => {
 
 })
 
+router.post('/track', async (req, res) => {
+    const ticketId = req.body.ticketId;
+
+    const getData = await user.findOne({ ticketId: ticketId });
+
+    if (getData) {
+        res.status(200).json({ success: true, data: getData, message: "TicketId found" });
+    }
+    else {
+        res.status(200).json({ success: true, message: "TicketId doesnot exist" });
+    }
+});
+
 module.exports = router;
