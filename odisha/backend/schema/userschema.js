@@ -1,31 +1,35 @@
 const mongoose = require('mongoose');
 
-const BachatSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
+    ticketId:{
+        type:Number,
+        required:true
+    },
     name: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
+ 
+    pincode:{
+        type:Number,
+        required:true
     },
-    password: {
-        type: String,
-        required: true
+    address:{
+        type:String,
+        required:true
     },
-    dataset: [
-        {
-        monthlyIncome: {
-            type: Number
-        },
-        monthlyExpense: {
-            type: Number
-        },
-        date: {
-            type: String
-        }
-        }
-    ]
+    e_waste:{
+        type:Boolean,
+        default:false
+    },
+    phone:{
+        type:Number,
+        required:true
+    },
+    gov:{
+        type:Boolean,
+        default:false
+    }
 });
 
-module.exports = mongoose.model("saving", BachatSchema);
+module.exports = mongoose.model("odisha",UserSchema );
