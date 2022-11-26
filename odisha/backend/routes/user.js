@@ -54,7 +54,7 @@ router.post("/complain", (req, res) => {
     phone: phone,
     // gov_com: req.body.gov_com,
     ticketId: ticketId,
-    municipality:municipality
+    municipality:municipality 
   });
   // send_SMS(phone,ticketId);  // UNCOMMENT THIS
   res.status(200).json({
