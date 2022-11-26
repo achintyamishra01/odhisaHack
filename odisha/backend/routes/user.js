@@ -3,7 +3,9 @@ const router = express.Router();
 const twilio = require("twilio");
 const dotenv = require("dotenv");
 const user = require("../schema/userschema");
-// const bcrypt = require("bcrypt");
+const fs=require("fs")
+
+
 
 const arr = [
   { 750017: "Bhubaneshwar Municipal Corporation" },
