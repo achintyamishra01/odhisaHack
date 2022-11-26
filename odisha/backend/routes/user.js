@@ -5,6 +5,12 @@ const dotenv = require("dotenv");
 const user = require("../schema/userschema");
 // const bcrypt = require("bcrypt");
 
+const arr = [
+  { 750017: "Bhubaneshwar Municipal Corporation" },
+
+  { 768006: "Sambalpur Municipal Corporation" },
+];
+
 require("dotenv").config();
 
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
@@ -23,14 +29,12 @@ router.post("/complain", (req, res) => {
     gov_com: req.body.gov_com,
     ticketId: ticketId,
   });
-    // send_SMS(phone,ticketId);  // UNCOMMENT THIS
-  res
-    .status(200)
-    .json({
-      success: true,
-      message:
-        "Ticket Generated successfully, and has been sent as an SMS to the phone number provided",
-    });
+  // send_SMS(phone,ticketId);  // UNCOMMENT THIS
+  res.status(200).json({
+    success: true,
+    message:
+      "Ticket Generated successfully, and has been sent as an SMS to the phone number provided",
+  });
 });
 
 router.post("/track", async (req, res) => {
@@ -47,17 +51,19 @@ router.post("/track", async (req, res) => {
   }
 });
 
-function send_SMS(num,ticketId) {
-    let mes= `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
-    console.log(mes);
+function send_SMS(num, ticketId) {
+  let mes = `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
+  console.log(mes);
   client.messages
     .create({
-      body:mes,
+      body: mes,
       to: "+91" + num, // Text this number
       from: "+15139604746", // From Twilio number
     })
     .then((message) => console.log(message.sid))
     .catch((error) => console.log(error));
 }
-
+router.post("/municipality", async (req, res) => {
+  res.status(200).json({ success: true, data: arr, message: "data_sent" });
+});
 module.exports = router;
