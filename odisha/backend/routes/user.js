@@ -10,7 +10,7 @@ const arr=[
    
     {"768006":"Sambalpur Municipal Corporation"}
     
-requi]
+]
 re("dotenv").config();
 
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
