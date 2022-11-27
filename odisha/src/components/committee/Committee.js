@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./committee.css";
-
+import { useNavigate } from "react-router-dom";
 const Committee = () => {
+  const navigate=useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const handleChange = (e) => {
 
-    if (e.target.name === "name") {
+    if (e.target.name === "email") {
       setemail(e.target.value);
     }
     if (e.target.name === "password") {
@@ -21,7 +22,7 @@ const Committee = () => {
 
     const data = { email, password };
 
-    const res = await fetch("/api/signIn", {
+    const res = await fetch("/api/signInCommittee", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -30,7 +31,13 @@ const Committee = () => {
     });
     const c = await res.json();
     console.log(c);
-    localStorage.setItem("committe",email)
+    if(c.success){
+      localStorage.setItem("committee",email)
+      navigate("/committeeDashboard")
+    }
+    else{
+      alert("invalid credentials")
+    }
   };
 
   return (
@@ -38,7 +45,7 @@ const Committee = () => {
       <Navbar></Navbar>
       <div id="cformOuter">
         <div className="complainForm">
-          <form >
+          <form action="" method="POST" className="Form" id="compfor" >
             <h2>Committee Login</h2>
             {/* <img src={require("../../Assets/form-img.png")} alt="" id="tree" /> */}
             <label htmlFor="name">Choose Committee</label>

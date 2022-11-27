@@ -6,9 +6,9 @@ const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    //   if(!localStorage.getItem("municipal")){
-    //     navigate("/municipal")
-    //   }
+      if(!localStorage.getItem("committee")){
+        navigate("/committee")
+      }
     fetchComplaints();
   }, []);
 
