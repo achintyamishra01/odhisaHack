@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 const Track = () => {
-  var ticket,status
+  var ticket,status,address,name,phone
   const [ticketId, setticketId] = useState("")
   const handleChange=(e)=>{
     if(e.target.name==="complaint_Ticket"){
@@ -24,9 +24,12 @@ const Track = () => {
     console.log(c.data);
     ticket=c.data.ticketId
     status=c.data.status
+    name=c.data.name
+    address=c.data.address
+    phone=c.data.phone
     let fetching =document.getElementById("fetching");
     console.log(fetching)
-    fetching.innerHTML=`<b>${ticket} and status is ${status}</b>`
+    fetching.innerHTML=`<b>${name} and ${phone} and ${address} and${ticket} and status is ${status}</b>`
   };
   return (
     <>
