@@ -76,9 +76,7 @@ router.post("/track", async (req, res) => {
   }
 });
 
-router.post("/municipality", async (req, res) => {
-  res.status(200).json({ success: true, data: arr, message: "data_sent" });
-});
+
 
 router.post("/register", async (req, res) => {
 
@@ -127,4 +125,19 @@ function send_SMS(num, ticketId) {
     .catch((error) => console.log(error));
 }
 
+
+
+router.post("/ticketStatus",async(req,res)=>{
+  console.log(req.body)
+  let ticketId=req.body.ticketId;
+  console.log(ticketId)
+  let d=await user.findOne({ticketId:ticketId})
+  if(!d){
+    res.status(200).json({success:false,data:null,message:"Ticket is invalid"})
+  }
+  else{
+    res.status(200).json({success:true,data:d,message:"Ticket is valid"})
+  }
+    
+})
 module.exports = router;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../navbar/Navbar";
 import "./complain.css";
 
 const Complain = () => {
@@ -73,73 +74,83 @@ const Complain = () => {
   };
 
   return (
-    <div id="cformOuter">
-      <div className="complainForm">
-        <form action="" method="POST" className="Form" id="compfor">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            placeholder="Enter ur name"
-            className="ipfield"
-            onChange={handleChange}
-          />
-          <br></br>
-          <input
-            type="number"
-            id="phone"
-            name="phone"
-            value={phone}
-            placeholder="Enter ur phone"
-            className="ipfield"
-            onChange={handleChange}
-          />
-          <br></br>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={address}
-            placeholder="Enter ur address"
-            className="ipfield"
-            onChange={handleChange}
-          />
-          <br></br>
-          <input
-            type="number"
-            id="pincode"
-            name="pincode"
-            value={pincode}
-            placeholder="Enter ur pincode"
-            className="ipfield"
-            onChange={handleChange}
-          />
-          <br></br>
-          <input
-            type="text"
-            id="municipality"
-            name="municipality"
-            className="ipfield"
-            value={municipality}
-          />
-          <br />
-          <div>
-            <label htmlFor="ewastecheckbox">Contains e-Waste</label>
+    <div>
+      <Navbar></Navbar>
+      <div id="cformOuter">
+        <div className="complainForm">
+          <form action="" method="POST" className="Form" id="compfor">
+            <h2>Service Request</h2>
             <input
-              type="checkbox"
-              value={e_waste}
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Enter ur name"
+              className="ipfield"
               onChange={handleChange}
-              name="ewastecheckbox"
-              id="ewaste"
             />
-          </div>
-          <br></br>
-          <button onClick={handleSubmit}>Raise Complain</button>
-        </form>
-      </div>
-      <div id="pedimg">
-        <img src={require("../../Assets/ped.png")} alt="" id="tree" />
+            <br></br>
+            <input
+              type="number"
+              id="phone"
+              name="phone"
+              value={phone}
+              placeholder="Enter ur phone"
+              className="ipfield"
+              onChange={handleChange}
+            />
+            <br></br>
+            <textarea
+              type="text"
+              id="address"
+              name="address"
+              value={address}
+              placeholder="Enter ur address"
+              className="ipfield"
+              onChange={handleChange}
+            />
+            <br></br>
+            <input
+              type="number"
+              id="pincode"
+              name="pincode"
+              value={pincode}
+              placeholder="Enter ur pincode"
+              className="ipfield"
+              onChange={handleChange}
+            />
+            <br></br>
+            <input
+              type="text"
+              id="municipality"
+              name="municipality"
+              className="ipfield"
+              value={municipality}
+            />
+            <br />
+            <div id="cbox">
+              <span>
+                <label htmlFor="ewastecheckbox">Contains e-Waste</label>
+              </span>
+              <span>
+                <input
+                  type="checkbox"
+                  value={e_waste}
+                  onChange={handleChange}
+                  name="ewastecheckbox"
+                  id="ewaste"
+                />
+              </span>
+            </div>
+            <br></br>
+            <button onClick={handleSubmit} id="raise">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div id="pedimg">
+          <img src={require("../../Assets/ped.png")} alt="" id="tree" />
+        </div>
       </div>
     </div>
   );
