@@ -41,10 +41,12 @@ require("dotenv").config();
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
 
 // Storage
+let file_name
 const Storage = multer.diskStorage({
   destination: 'uploads',
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    file_name=Date.now()
+    cb(null, Date.now()+file.originalname)
   }
 });
 
@@ -190,4 +192,29 @@ router.post('/complainIndustry', async (req, res) => {
 
 });
 
+router.post("/municipality",async(req,res)=>{
+  res.status(200).json({success:true,data:arr,message:"data sent"})
+})
+router.post("/fetchComplaints",async(req,res)=>{
+  
+  let municipal=req.body.d
+
+  let d=await user.find({municipality:municipal})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:false,data:null,message:"error getting complaints"})
+  }
+})
+
+router.post("/fetchGovComplaints",async(req,res)=>{
+  let d=await user.find({gov_com:true})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Gov complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
+  }
+})
 module.exports = router;
