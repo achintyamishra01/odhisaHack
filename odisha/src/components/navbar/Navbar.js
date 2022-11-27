@@ -5,7 +5,9 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-        <img src={require("../../Assets/logo.png")} alt="" />
+        <a href="/">
+          <img src={require("../../Assets/logo.png")} alt="" />
+        </a>
         <ul id="navul">
           <li>
             {" "}
@@ -13,7 +15,7 @@ const Navbar = () => {
           </li>
           <li>
             {" "}
-            <a href="">Committee</a>
+            <a href="/Committee">Committee</a>
           </li>
           <li>
             <a href="">Municipal</a>

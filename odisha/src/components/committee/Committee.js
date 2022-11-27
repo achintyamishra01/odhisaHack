@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../navbar/Navbar";
 import "./committee.css";
 
 const Committee = () => {
@@ -18,14 +19,14 @@ const Committee = () => {
     e.preventDefault();
     console.log(name);
     console.log(password);
-    const ele = { name, password };
+    const data = { name, password };
 
     const res = await fetch("/api/signIn", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(ele),
+      body: JSON.stringify(data),
     });
     const c = await res.json();
     console.log(c);
