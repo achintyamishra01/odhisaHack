@@ -4,6 +4,7 @@ import Track from "./components/track/Track";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Committee from "./components/committee/Committee";
 import Municipal from "./components/municipal/Municipal";
+import Industry from "./components/industry/Industry";
 import MunicipalDashboard from "./components/municipal/MunicipalDashboard";
 import CommitteelDashboard from "./components/committee/CommitteeDashboard";
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/committee" element={<Committee />} />
         <Route path="/municipal" element={<Municipal />} />
         <Route path="/track" element={<Track />} />
+        <Route path="/industry" element={<Industry/>} />
         <Route path="/municipalDashboard" element={<MunicipalDashboard />} />
         <Route path="/committeeDashboard" element={<CommitteelDashboard />} />
       </Routes>
