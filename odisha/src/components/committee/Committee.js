@@ -3,14 +3,13 @@ import Navbar from "../navbar/Navbar";
 import "./committee.css";
 
 const Committee = () => {
-  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const handleChange = (e) => {
-    console.log(name);
-    console.log(password);
+
     if (e.target.name === "name") {
-      setname(e.target.value);
+      setemail(e.target.value);
     }
     if (e.target.name === "password") {
       setpassword(e.target.value);
@@ -19,9 +18,8 @@ const Committee = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name);
-    console.log(password);
-    const data = { name, password };
+
+    const data = { email, password };
 
     const res = await fetch("/api/signIn", {
       method: "POST",
@@ -32,6 +30,7 @@ const Committee = () => {
     });
     const c = await res.json();
     console.log(c);
+    localStorage.setItem("committe",email)
   };
 
   return (
@@ -39,16 +38,16 @@ const Committee = () => {
       <Navbar></Navbar>
       <div id="cformOuter">
         <div className="complainForm">
-          <form action="" method="POST" className="Form" id="compfor">
+          <form >
             <h2>Committee Login</h2>
             {/* <img src={require("../../Assets/form-img.png")} alt="" id="tree" /> */}
             <label htmlFor="name">Choose Committee</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={name}
-              placeholder="Enter ur name"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Enter ur email"
               className="ipfield"
               onChange={handleChange}
             />
