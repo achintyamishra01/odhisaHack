@@ -89,7 +89,7 @@ router.post("/register", async (req, res) => {
     res.status(200).json({ success: true, message: "Municipal Corporation Created" });
 
   }else{
-    res.status(200).json({success:true,message:"User already exists"});
+    res.status(200).json({success:false,message:"User already exists"});
   }
 
 });
@@ -98,14 +98,14 @@ router.post("/signIn",async (req,res)=>{
   const municipal_corp = await municipal.findOne({name:req.body.name});
 
   if(municipal_corp==null){
-    res.status(200).json({success:true,message:"Invalid municipal corporation"});
+    res.status(200).json({success:false,message:"Invalid municipal corporation"});
   }
   else{
     if(municipal_corp.password === req.body.password){
       res.status(200).json({success:true,message:"Successfully logged In"});
     }
     else{
-      res.status(200).json({success:true,message:"Incorrect Password"});
+      res.status(200).json({success:false,message:"Incorrect Password"});
     }
   }
 });
@@ -146,4 +146,18 @@ router.post("/resolve",async(req,res)=>{
     res.status(200).json({success:true,data:d,message:"Ticket is pushed to higher authorities"})
   }
 })
+
+router.post("/fetchComplaints",async(req,res)=>{
+  
+  let municipal=req.body.d
+
+  let d=await user.find({municipality:municipal})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:false,data:null,message:"error getting complaints"})
+  }
+})
+
 module.exports = router;

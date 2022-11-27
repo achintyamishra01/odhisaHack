@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./municipal.css";
+import { useNavigate } from "react-router-dom";
 
 const Municipal = () => {
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(name);
-    console.log(password);
+  
     if (e.target.name === "name") {
       setname(e.target.value);
     }
@@ -19,8 +20,7 @@ const Municipal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name);
-    console.log(password);
+
     const data = { name, password };
 
     const res = await fetch("/api/signIn", {
@@ -31,7 +31,14 @@ const Municipal = () => {
       body: JSON.stringify(data),
     });
     const c = await res.json();
-    console.log(c);
+    console.log(c.success)
+    if(c.success){
+        localStorage.setItem("municipal",name)
+        navigate("/municipalDashboard")
+    }
+    else{
+        alert(c.message)
+    }
   };
 
   return (
@@ -40,7 +47,7 @@ const Municipal = () => {
       <div id="cformOuter">
         <div className="complainForm">
           <form action="" method="POST" className="Form" id="compfor">
-            <h2>Committee Login</h2>
+            <h2>Municipality Login</h2>
             <label htmlFor="name">Choose Municipality</label>
             <select
               type="text"
