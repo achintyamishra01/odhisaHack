@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const twilio = require("twilio");
 const dotenv = require("dotenv");
+const multer = require("multer");
 const user = require("../schema/userschema");
-const municipal = require("../schema/municipalschema")
+const municipal = require("../schema/municipalschema");
+const industry = require('../schema/industryschema');
+
 
 const arr = [
   { 750017: "Bhubaneshwar Municipal Corporation" },
@@ -36,6 +39,19 @@ const arr = [
 require("dotenv").config();
 
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
+
+// Storage
+const Storage = multer.diskStorage({
+  destination: 'uploads',
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  }
+});
+
+const upload = multer({
+  storage: Storage,
+}).single('testImage')
+//*********we need to specify testImage in the field of image in postman************
 
 router.post("/complain", (req, res) => {
   console.log(req.body.pincode);
@@ -78,34 +94,34 @@ router.post("/track", async (req, res) => {
 
 router.post("/register", async (req, res) => {
 
-  const check = await municipal.findOne({name:req.body.name});
+  const check = await municipal.findOne({ name: req.body.name });
 
-  if(check==null){
+  if (check == null) {
     const municipal_corp = municipal.create({
       name: req.body.name,
       password: req.body.password
     });
-  
+
     res.status(200).json({ success: true, message: "Municipal Corporation Created" });
 
-  }else{
-    res.status(200).json({success:true,message:"User already exists"});
+  } else {
+    res.status(200).json({ success: true, message: "User already exists" });
   }
 
 });
 
-router.post("/signIn",async (req,res)=>{
-  const municipal_corp = await municipal.findOne({name:req.body.name});
+router.post("/signIn", async (req, res) => {
+  const municipal_corp = await municipal.findOne({ name: req.body.name });
 
-  if(municipal_corp==null){
-    res.status(200).json({success:true,message:"Invalid municipal corporation"});
+  if (municipal_corp == null) {
+    res.status(200).json({ success: true, message: "Invalid municipal corporation" });
   }
-  else{
-    if(municipal_corp.password === req.body.password){
-      res.status(200).json({success:true,message:"Successfully logged In"});
+  else {
+    if (municipal_corp.password === req.body.password) {
+      res.status(200).json({ success: true, message: "Successfully logged In" });
     }
-    else{
-      res.status(200).json({success:true,message:"Incorrect Password"});
+    else {
+      res.status(200).json({ success: true, message: "Incorrect Password" });
     }
   }
 });
@@ -123,27 +139,55 @@ function send_SMS(num, ticketId) {
     .catch((error) => console.log(error));
 }
 
-router.post("/ticketStatus",async(req,res)=>{
-  let ticketId=req.body.ticketId;
+router.post("/ticketStatus", async (req, res) => {
+  let ticketId = req.body.ticketId;
   console.log(ticketId)
-  let d=await user.findOne({ticketId:ticketId})
-  if(!d){
-    res.status(200).json({success:false,data:null,message:"Ticket is invalid"})
+  let d = await user.findOne({ ticketId: ticketId })
+  if (!d) {
+    res.status(200).json({ success: false, data: null, message: "Ticket is invalid" })
   }
-  else{
-    res.status(200).json({success:true,data:d,message:"Ticket is valid"})
+  else {
+    res.status(200).json({ success: true, data: d, message: "Ticket is valid" })
   }
-    
+
 });
 
-router.post("/resolve",async(req,res)=>{
-  let ticketId=req.body.ticketId
-  let d=await user.findOneAndUpdate({ticketId:ticketId},{gov_com:true})
-  if(!d){
-    res.status(200).json({success:false,data:null,message:"Ticket is invalid"})
+router.post("/resolve", async (req, res) => {
+  let ticketId = req.body.ticketId
+  let d = await user.findOneAndUpdate({ ticketId: ticketId }, { gov_com: true })
+  if (!d) {
+    res.status(200).json({ success: false, data: null, message: "Ticket is invalid" })
   }
-  else{
-    res.status(200).json({success:true,data:d,message:"Ticket is pushed to higher authorities"})
+  else {
+    res.status(200).json({ success: true, data: d, message: "Ticket is pushed to higher authorities" })
   }
 })
+
+router.post('/complainIndustry', async (req, res) => {
+
+  upload(req, res, (err) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      const complain = industry.create({
+        issue: req.body.issue,
+        name: req.body.name,
+        locality: req.body.locality,
+        pincode: parseInt(req.body.pincode),
+        testImage: {
+          data: req.file.filename,
+          contentType: 'image/png'
+        }
+      })
+
+        // check for failure or success
+        .then(() => 
+        res.status(200).json({ success: true, message: "complain registered for industry" })
+        ).catch(err=>console.log(err))
+    }
+  });
+
+});
+
 module.exports = router;
