@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./complain.css";
 
 const Complain = () => {
   const [name, setname] = useState("");
@@ -70,60 +71,69 @@ const Complain = () => {
   };
 
   return (
-    <div>
-      <form action="" method="POST" className="Form">
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          placeholder="Enter ur name"
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="number"
-          id="phone"
-          name="phone"
-          value={phone}
-          placeholder="Enter ur phone"
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="text"
-          id="address"
-          name="address"
-          value={address}
-          placeholder="Enter ur address"
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="number"
-          id="pincode"
-          name="pincode"
-          value={pincode}
-          placeholder="Enter ur pincode"
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="text"
-          id="municipality"
-          name="municipality"
-          value={municipality}
-        />
-        <label htmlFor="ewastecheckbox">Contains e-Waste</label>
-        <input
-          type="checkbox"
-          value={e_waste}
-          onChange={handleChange}
-          name="ewastecheckbox"
-          id="ewaste"
-        />
-        <br></br>
-        {/* <label>True</label>
+    <div id="cformOuter">
+      <div className="complainForm">
+        <form action="" method="POST" className="Form" id="compfor">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            placeholder="Enter ur name"
+            className="ipfield"
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="number"
+            id="phone"
+            name="phone"
+            value={phone}
+            placeholder="Enter ur phone"
+            className="ipfield"
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            value={address}
+            placeholder="Enter ur address"
+            className="ipfield"
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="number"
+            id="pincode"
+            name="pincode"
+            value={pincode}
+            placeholder="Enter ur pincode"
+            className="ipfield"
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            id="municipality"
+            name="municipality"
+            className="ipfield"
+            value={municipality}
+          />
+          <br />
+          <div>
+            <label htmlFor="ewastecheckbox">Contains e-Waste</label>
+            <input
+              type="checkbox"
+              value={e_waste}
+              onChange={handleChange}
+              name="ewastecheckbox"
+              id="ewaste"
+            />
+          </div>
+          <br></br>
+          {/* <label>True</label>
   <input type="radio" id="e_waste" name="e_waste" value={e_waste} />
     <br></br>
   <label>False</label>
@@ -135,8 +145,12 @@ const Complain = () => {
   <label>False</label>
   <input type="radio" id="gov_com1" name="gov_com" value={gov_com} />
     <br></br> */}
-        <button onClick={handleSubmit}>Raise Complain</button>
-      </form>
+          <button onClick={handleSubmit}>Raise Complain</button>
+        </form>
+      </div>
+      <div id="pedimg">
+        <img src={require("../../Assets/ped.png")} alt="" id="tree" />
+      </div>
     </div>
   );
 };

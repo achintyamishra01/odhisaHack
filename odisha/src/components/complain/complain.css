@@ -1,0 +1,30 @@
+#cformOuter {
+  background-color: #ebf9db;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-around;
+}
+#tree {
+  height: 25rem;
+  width: 35rem;
+  padding-top: 4rem;
+}
+.complainForm {
+  height: 80vh;
+  width: 30vw;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+#compfor {
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ipfield {
+  padding: 4px 5px;
+  border-radius: 10px;
+}
