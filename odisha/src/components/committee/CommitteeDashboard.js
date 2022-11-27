@@ -48,7 +48,73 @@ const CommitteelDashboard = () => {
         <h2>
           <u>Industry Complaint :</u>
         </h2>
-        <table id="Gov_complaints">{renderList}</table>
+        <table id="Gov_complaints">
+          <tr>
+            <th>Issue</th>
+            <th>Industry Name</th>
+            <th>Locality</th>
+            <th>Pincode</th>
+            <th>Proof</th>
+            <th>Verify</th>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td>Industry Name</td>
+            <td>Locality</td>
+            <td>Pincode</td>
+            <td>Proof</td>
+            <td>Verify</td>
+          </tr>
+          {renderList}
+        </table>
       </div>
     </div>
   );

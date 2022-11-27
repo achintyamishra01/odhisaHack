@@ -26,3 +26,7 @@ div > a > img {
 #outerdashcom > h2 {
   margin-bottom: 1rem;
 }
+#compfor > img {
+  scale: 0.5;
+  padding: 0;
+}
