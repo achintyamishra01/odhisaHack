@@ -104,8 +104,8 @@ router.post("/register", async (req, res) => {
 
     res.status(200).json({ success: true, message: "Municipal Corporation Created" });
 
-  } else {
-    res.status(200).json({ success: true, message: "User already exists" });
+  }else{
+    res.status(200).json({success:false,message:"User already exists"});
   }
 
 });
@@ -113,15 +113,15 @@ router.post("/register", async (req, res) => {
 router.post("/signIn", async (req, res) => {
   const municipal_corp = await municipal.findOne({ name: req.body.name });
 
-  if (municipal_corp == null) {
-    res.status(200).json({ success: true, message: "Invalid municipal corporation" });
+  if(municipal_corp==null){
+    res.status(200).json({success:false,message:"Invalid municipal corporation"});
   }
   else {
     if (municipal_corp.password === req.body.password) {
       res.status(200).json({ success: true, message: "Successfully logged In" });
     }
-    else {
-      res.status(200).json({ success: true, message: "Incorrect Password" });
+    else{
+      res.status(200).json({success:false,message:"Incorrect Password"});
     }
   }
 });
