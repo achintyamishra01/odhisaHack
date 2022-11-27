@@ -76,8 +76,6 @@ router.post("/track", async (req, res) => {
   }
 });
 
-
-
 router.post("/register", async (req, res) => {
 
   const check = await municipal.findOne({name:req.body.name});
@@ -125,8 +123,6 @@ function send_SMS(num, ticketId) {
     .catch((error) => console.log(error));
 }
 
-
-
 router.post("/ticketStatus",async(req,res)=>{
   console.log(req.body)
   let ticketId=req.body.ticketId;
@@ -140,4 +136,5 @@ router.post("/ticketStatus",async(req,res)=>{
   }
     
 })
+
 module.exports = router;
