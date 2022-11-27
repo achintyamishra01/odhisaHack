@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react'
-import './mvp.css'
+import React, { useState } from "react";
+import "./mvp.css";
 
 import {
   ref,
@@ -13,16 +12,12 @@ import { storage } from "./firebase";
 import { v4 } from "uuid";
 
 const Mvp = () => {
+  const [result, setResult] = useState("");
 
-
-
-
-  const [result, setResult] = useState('');
-
-  const [loader,setLoader]= useState(true)
+  const [loader, setLoader] = useState(true);
 
   const [isSelected, setIsSelected] = useState(false);
-  const [flag, setflag] = useState(false)
+  const [flag, setflag] = useState(false);
   const [name, setname] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
 
@@ -31,22 +26,20 @@ const Mvp = () => {
   const imagesListRef = ref(storage, "images/");
 
   const changeHandler = (event) => {
-    
     console.log(event.target.files[0]);
     setImageUpload(event.target.files[0]);
-
 
     setIsSelected(true);
   };
   const uploadFile = () => {
-    console.log(imageUpload)
+    console.log(imageUpload);
 
     if (imageUpload == null) {
-      setflag(false)
+      setflag(false);
       return;
     }
-    let fileuuidname = `${imageUpload.name + v4()}`
-    setname(fileuuidname)
+    let fileuuidname = `${imageUpload.name + v4()}`;
+    setname(fileuuidname);
     const imageRef = ref(storage, `images/${fileuuidname}`);
     console.log(imageRef);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -54,50 +47,40 @@ const Mvp = () => {
         setImageUrls((prev) => [...prev, url]);
       });
     });
-    setflag(true)
-
+    setflag(true);
   };
 
-
-
-
-
-
   const predict = () => {
-    setLoader(false)
+    setLoader(false);
 
     let data = {
-      name
-    }
+      name,
+    };
     // const blog = { title, body, author };
-    fetch('http://localhost:3003/dutta', {
-      method: 'POST',
+    fetch("https://aef2-45-127-46-179.in.ngrok.io/dutta", {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(name)
+      body: JSON.stringify(name),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-  }
+      .then((data) => console.log(data));
+  };
 
   return (
-    <div >
+    <div>
       <div className="parent3 ">
         <section className="left3 border-2">
           <p></p>
           <i class="fa-solid fa-arrow-down"></i>
           <input type="file" onChange={changeHandler} accept="image/"></input>
-         
 
           <button onClick={uploadFile}>U P L O A D</button>
 
           <button onClick={predict}>Predict dish</button>
-
         </section>
-
-        
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Mvp
+export default Mvp;

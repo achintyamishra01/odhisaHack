@@ -6,7 +6,7 @@ from unicodedata import category
 from flask import Flask ,render_template, request,jsonify
 from flask_cors import CORS
 # from flask_ngrok import run_with_ngrok
-import pyrebase
+# import pyrebase
 import time
 import os
 app= Flask(__name__)
@@ -54,42 +54,42 @@ def model_predict(img_path,model):
 def upload():
 
 
-    print(request.data)
-    getdata=request.get_json()  
-    # getdata=jsonify(getdata)
-    print((getdata))
+    # print(request.data)
+    # getdata=request.get_json()  
+    # # getdata=jsonify(getdata)
+    # print((getdata))
   
         
-    import pyrebase
-    import os
-    config={
-    "apiKey": "AIzaSyBR1rLney0FtBpDbe0OpHZKrqXzF9FXM-Y",
-    "authDomain": "upload-files-97fdd.firebaseapp.com",
-    "projectId": "upload-files-97fdd",
-    "storageBucket": "upload-files-97fdd.appspot.com",
-    "messagingSenderId": "1056716980772",
-    "appId": "1:1056716980772:web:cdd9cf363c8b0ea6f58eb1",
-    "databaseURL":"https://upload-files-97fdd.firebaseio.com"
+    # import pyrebase
+    # import os
+    # config={
+    # "apiKey": "AIzaSyBR1rLney0FtBpDbe0OpHZKrqXzF9FXM-Y",
+    # "authDomain": "upload-files-97fdd.firebaseapp.com",
+    # "projectId": "upload-files-97fdd",
+    # "storageBucket": "upload-files-97fdd.appspot.com",
+    # "messagingSenderId": "1056716980772",
+    # "appId": "1:1056716980772:web:cdd9cf363c8b0ea6f58eb1",
+    # "databaseURL":"https://upload-files-97fdd.firebaseio.com"
     
-    }
+    # }
 
 
 
-    firebase=pyrebase.initialize_app(config)
-    storage=firebase.storage()
+    # firebase=pyrebase.initialize_app(config)
+    # storage=firebase.storage()
 
-    print(storage)
-    path_on_cloud="/images/"+str(getdata)
-
-
+    # print(storage)
+    # path_on_cloud="/images/"+str(getdata)
 
 
-    print(type(path_on_cloud))
-    # storage.child(path_on_cloud).put(path_local)
 
 
-    storage.child(path_on_cloud).download(filename="dutta.jpg",path=os.path.basename(path_on_cloud))
-    time.sleep(4)
+    # print(type(path_on_cloud))
+    # # storage.child(path_on_cloud).put(path_local)
+
+
+    # storage.child(path_on_cloud).download(filename="dutta.jpg",path=os.path.basename(path_on_cloud))
+    # time.sleep(4)
 
         
     file_path='./dutta.jpg'
