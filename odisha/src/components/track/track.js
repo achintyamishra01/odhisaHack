@@ -1,15 +1,45 @@
-import React from "react";
+import React,{useState} from "react";
 
-const track = () => {
+const Track = () => {
+  var ticket,status
+  const [ticketId, setticketId] = useState("")
+  const handleChange=(e)=>{
+    if(e.target.name==="complaint_Ticket"){
+      setticketId(e.target.value);
+    }
+  }
+  const handleSubmit=async (e) => {
+    e.preventDefault();
+    
+    const ele = { ticketId };
+    console.log(ticketId)
+    const res = await fetch("/api/ticketStatus", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(ele),
+    });
+    const c = await res.json();
+    console.log(c.data);
+    ticket=c.data.ticketId
+    status=c.data.status
+    let fetching =document.getElementById("fetching");
+    console.log(fetching)
+    fetching.innerHTML=`<b>${ticket} and status is ${status}</b>`
+  };
   return (
+    <>
     <div className="form-container">
-      <form action="/" method="get" className="Form">
-        <label htmlFor="complaint_Ticket"> Enter the Ticket ID</label>
-        <input type="text" name="complaint_Ticket" id="complaint_Ticket" />
-        <input type="submit" value="submit" />
+      <form className="Form">
+        
+        <input type="text" name="complaint_Ticket" id="complaint_Ticket" placeholder="Enter ticket id u want to track" onChange={handleChange} />
+        <button onClick={handleSubmit}>Track</button>
       </form>
     </div>
+    <div id ="fetching"></div>
+    </>
   );
 };
 
-export default track;
+export default Track;

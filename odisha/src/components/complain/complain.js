@@ -133,18 +133,7 @@ const Complain = () => {
             />
           </div>
           <br></br>
-          {/* <label>True</label>
-  <input type="radio" id="e_waste" name="e_waste" value={e_waste} />
-    <br></br>
-  <label>False</label>
-  <input type="radio" id="e_waste1" name="e_waste" value={e_waste} />
-    <br></br>
-  <label>True</label>
-  <input type="radio" id="gov_com" name="gov_com" value={gov_com} />
-    <br></br>
-  <label>False</label>
-  <input type="radio" id="gov_com1" name="gov_com" value={gov_com} />
-    <br></br> */}
+
           <button onClick={handleSubmit}>Raise Complain</button>
         </form>
       </div>
