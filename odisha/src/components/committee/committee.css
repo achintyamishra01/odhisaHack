@@ -1,0 +1,28 @@
+#outerdashcom {
+  background-color: #ebf9db;
+  padding: 3rem;
+  height: 68vh;
+  width: 84vw;
+  padding: 10vh 7vw;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet');
+div > a > img {
+  height: 4.5rem;
+}
+#gchead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#gchead > a {
+  width: 37%;
+}
+#gchead > div {
+  width: 63%;
+}
+#gchead > div > h2 {
+  font-family: "Inter", sans-serif;
+}
+#outerdashcom > h2 {
+  margin-bottom: 1rem;
+}
