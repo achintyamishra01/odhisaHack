@@ -13,14 +13,21 @@ function Industry() {
   };
 
   const handleChange = () => {
-    
+
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>Issue</label>
-        <textarea type='text' />
+         <textarea
+              type="text"
+              id="address"
+              name="address"
+              value={issue}
+              placeholder="Enter ur address"
+              className="ipfield"
+              onChange={handleChange}
+            />
       </form>
     </div>
   )

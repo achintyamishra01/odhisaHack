@@ -28,7 +28,7 @@ const Track = () => {
     status = c.data.status;
     name = c.data.name;
     address = c.data.address;
-    pin = c.data.pin;
+    pin = c.data.pincode;
     let tab = document.getElementById("tab");
     console.log(tab);
     tab.innerHTML = `<tr>
