@@ -137,6 +137,13 @@ router.post("/ticketStatus",async(req,res)=>{
 });
 
 router.post("/resolve",async(req,res)=>{
-  
+  let ticketId=req.body.ticketId
+  let d=await user.findOneAndUpdate({ticketId:ticketId},{gov_com:true})
+  if(!d){
+    res.status(200).json({success:false,data:null,message:"Ticket is invalid"})
+  }
+  else{
+    res.status(200).json({success:true,data:d,message:"Ticket is pushed to higher authorities"})
+  }
 })
 module.exports = router;

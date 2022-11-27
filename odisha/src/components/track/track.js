@@ -37,26 +37,29 @@ const Track = () => {
 const handleResolve=async()=>{
   if(!ticketId){alert("please enter the ticket id")}
   else{
-  const ele = { ticketId };
+  
   var dateCreated = new Date(parseInt(ticketId)); //in normal format
   var currentDate=Date.now(); //in milliseconds
   console.log(dateCreated.toString());
   var dateDifference=parseInt(currentDate)-parseInt(ticketId)
-  if(dateDifference>172800000){
-    //api cal;
+  if(dateDifference>36000000){
+    const ele = { ticketId };
+    const res = await fetch("/api/resolve", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(ele),
+  });
+
+  const c = await res.json(); 
+  alert(c.message)
+
   }
   else{
     alert("please wait until the estimated time is there to solve the complaint")
   }
-  // const res = await fetch("/api/resolve", {
-  //   method: "POST",
-  //   headers: {
-  //     "content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(ele),
-  // });
-
-  // const c = await res.json();
+  
 }
 }
 

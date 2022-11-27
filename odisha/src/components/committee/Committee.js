@@ -7,6 +7,8 @@ const Committee = () => {
   const [password, setpassword] = useState("");
 
   const handleChange = (e) => {
+    console.log(name);
+    console.log(password);
     if (e.target.name === "name") {
       setname(e.target.value);
     }
@@ -38,8 +40,9 @@ const Committee = () => {
       <div id="cformOuter">
         <div className="complainForm">
           <form action="" method="POST" className="Form" id="compfor">
-            <h2>Service Request</h2>
-            <input
+            <h2>Committee Login</h2>
+            <label htmlFor="name">Choose Committee</label>
+            <select
               type="text"
               id="name"
               name="name"
@@ -47,8 +50,26 @@ const Committee = () => {
               placeholder="Enter ur name"
               className="ipfield"
               onChange={handleChange}
-            />
+            >
+              <option value="">--Select--</option>
+              <option value="Bhubaneshwar Municipal Corporation">
+                Bhubaneshwar Municipal Corporation
+              </option>
+              <option value="Cuttack Municipal Corporation">
+                Cuttack Municipal Corporation
+              </option>
+              <option value="Berhampur Municipal Corporation">
+                Berhampur Municipal Corporation
+              </option>
+              <option value="Rourkela Municipal Corporation">
+                Rourkela Municipal Corporation
+              </option>
+              <option value="Sambalpur Municipal Corporation">
+                Sambalpur Municipal Corporation
+              </option>
+            </select>
             <br></br>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
