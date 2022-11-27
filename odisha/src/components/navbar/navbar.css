@@ -4,7 +4,7 @@ nav {
   justify-content: space-between;
   flex-direction: row;
 }
-nav > img {
+nav > a > img {
   height: 4.5rem;
 }
 #navul {
