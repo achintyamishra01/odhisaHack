@@ -20,6 +20,7 @@ const Track = () => {
       },
       body: JSON.stringify(ele),
     });
+
     const c = await res.json();
     console.log(c.data);
     ticket=c.data.ticketId
@@ -31,6 +32,34 @@ const Track = () => {
     console.log(fetching)
     fetching.innerHTML=`<b>${name} and ${phone} and ${address} and${ticket} and status is ${status}</b>`
   };
+
+
+const handleResolve=async()=>{
+  if(!ticketId){alert("please enter the ticket id")}
+  else{
+  const ele = { ticketId };
+  var dateCreated = new Date(parseInt(ticketId)); //in normal format
+  var currentDate=Date.now(); //in milliseconds
+  console.log(dateCreated.toString());
+  var dateDifference=parseInt(currentDate)-parseInt(ticketId)
+  if(dateDifference>172800000){
+    //api cal;
+  }
+  else{
+    alert("please wait until the estimated time is there to solve the complaint")
+  }
+  // const res = await fetch("/api/resolve", {
+  //   method: "POST",
+  //   headers: {
+  //     "content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(ele),
+  // });
+
+  // const c = await res.json();
+}
+}
+
   return (
     <>
     <div className="form-container">
@@ -41,6 +70,7 @@ const Track = () => {
       </form>
     </div>
     <div id ="fetching"></div>
+    <button onClick={handleResolve}>Push to higher authorities</button>
     </>
   );
 };

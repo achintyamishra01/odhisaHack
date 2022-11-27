@@ -95,7 +95,6 @@ router.post("/municipality", async (req, res) => {
 });
 
 router.post("/ticketStatus",async(req,res)=>{
-  console.log(req.body)
   let ticketId=req.body.ticketId;
   console.log(ticketId)
   let d=await user.findOne({ticketId:ticketId})
@@ -106,5 +105,8 @@ router.post("/ticketStatus",async(req,res)=>{
     res.status(200).json({success:true,data:d,message:"Ticket is valid"})
   }
     
+})
+router.post("/resolve",async(req,res)=>{
+  
 })
 module.exports = router;
