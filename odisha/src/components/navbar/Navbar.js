@@ -19,7 +19,7 @@ const Navbar = () => {
             <Link to="/Committee">Committee</Link>
           </li>
           <li>
-            <Link to="">Municipal</Link>
+            <Link to="/Municipal">Municipal</Link>
           </li>
         </ul>
       </nav>
