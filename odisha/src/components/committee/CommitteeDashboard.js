@@ -1,40 +1,39 @@
 import React,{useEffect,useState} from 'react'
 import { useNavigate } from "react-router-dom";
 
-const MunicipalDashboard = () => {
+const CommitteelDashboard = () => {
     const [data1, setdata1] = useState([])
     const navigate = useNavigate();
     useEffect(() => {
-      if(!localStorage.getItem("municipal")){
-        navigate("/municipal")
-      }
+    //   if(!localStorage.getItem("municipal")){
+    //     navigate("/municipal")
+    //   }
       fetchComplaints()
    
     }, [])
     
     const fetchComplaints=async()=>{
-        const d=localStorage.getItem("municipal");
-        const municipal={d};
-        const res = await fetch("/api/fetchComplaints", {
+      
+        const res = await fetch("/api/fetchGovComplaints", {
             method: "POST",
             headers: {
               "content-type": "application/json",
-            },
-            body: JSON.stringify(municipal),
+            }
+           
           });
           const c=await res.json();
           
-          if(c.success){
+          if(c.data){
             console.log(c.data)
             setdata1(c.data);
             
           }
           else{
-            alert("something went wrong")
+            document.getElementById("Gov_complaints").innerHTML="No complaints so far!!!"
           }
         
+        
     }
-    
     const renderList = data1.map((item, index) => (
         
         <p>
@@ -44,9 +43,9 @@ const MunicipalDashboard = () => {
       ));
   return (
     <>
-    <div id='complaints'>{renderList}</div>
+    <div id='Gov_complaints'>{renderList}</div>
     </>
   )
 }
 
-export default MunicipalDashboard
+export default CommitteelDashboard

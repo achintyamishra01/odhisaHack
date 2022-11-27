@@ -147,6 +147,8 @@ router.post("/resolve",async(req,res)=>{
   }
 })
 
+
+
 router.post("/fetchComplaints",async(req,res)=>{
   
   let municipal=req.body.d
@@ -159,5 +161,16 @@ router.post("/fetchComplaints",async(req,res)=>{
     res.status(200).json({success:false,data:null,message:"error getting complaints"})
   }
 })
+
+router.post("/fetchGovComplaints",async(req,res)=>{
+  let d=await user.find({gov_com:true})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Gov complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
+  }
+})
+
 
 module.exports = router;
