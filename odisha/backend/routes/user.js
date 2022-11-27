@@ -134,7 +134,8 @@ router.post("/ticketStatus",async(req,res)=>{
     res.status(200).json({success:true,data:d,message:"Ticket is valid"})
   }
     
-})
+});
+
 router.post("/resolve",async(req,res)=>{
   let ticketId=req.body.ticketId
   let d=await user.findOneAndUpdate({ticketId:ticketId},{gov_com:true})
