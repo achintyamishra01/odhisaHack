@@ -6,7 +6,7 @@ const multer = require("multer");
 const user = require("../schema/userschema");
 const municipal = require("../schema/municipalschema");
 const industry = require('../schema/industryschema');
-
+const committee=require("../schema/committeeLogin")
 
 const arr = [
   { 750017: "Bhubaneshwar Municipal Corporation" },
@@ -111,7 +111,6 @@ router.post("/register", async (req, res) => {
   }
 
 });
-
 router.post("/signIn", async (req, res) => {
   const municipal_corp = await municipal.findOne({ name: req.body.name });
 
@@ -119,7 +118,7 @@ router.post("/signIn", async (req, res) => {
     res.status(200).json({success:false,message:"Invalid municipal corporation"});
   }
   else {
-    if (municipal_corp.password === req.body.password) {
+    if (municipal_corp.password == req.body.password) {
       res.status(200).json({ success: true, message: "Successfully logged In" });
     }
     else{
@@ -127,6 +126,37 @@ router.post("/signIn", async (req, res) => {
     }
   }
 });
+router.post("/registerCommittee",async(req,res)=>{
+  const check = await committee.findOne({ email: req.body.email });
+
+  if (check == null) {
+    await committee.create({
+      email: req.body.email,
+      password: req.body.password
+    });
+
+    res.status(200).json({ success: true, message: "Governing committee registered" });
+
+  }else{
+    res.status(200).json({success:false,message:"Governing committee already registered"});
+  }
+})
+router.post("/signInCommittee",async(req,res)=>{
+  const gov_committee = await committee.findOne({ email: req.body.email });
+  
+  if(gov_committee==null){
+    res.status(200).json({success:false,message:"Invalid government committee"});
+  }
+  else {
+    if (gov_committee.password == req.body.password) {
+      res.status(200).json({ success: true, message: "Successfully logged In" });
+    }
+    else{
+      res.status(200).json({success:false,message:"Incorrect Password"});
+    }
+  }
+})
+
 
 function send_SMS(num, ticketId) {
   let mes = `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
@@ -217,4 +247,5 @@ router.post("/fetchGovComplaints",async(req,res)=>{
     res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
   }
 })
+
 module.exports = router;
