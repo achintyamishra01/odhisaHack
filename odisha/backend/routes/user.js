@@ -75,9 +75,7 @@ router.post("/track", async (req, res) => {
     res.status(200).json({ success: true, message: "TicketId doesnot exist" });
   }
 });
-router.post("/municipality", async (req, res) => {
-  res.status(200).json({ success: true, data: arr, message: "data_sent" });
-});
+
 
 function send_SMS(num, ticketId) {
   let mes = `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
@@ -91,7 +89,22 @@ function send_SMS(num, ticketId) {
     .then((message) => console.log(message.sid))
     .catch((error) => console.log(error));
 }
+
 router.post("/municipality", async (req, res) => {
   res.status(200).json({ success: true, data: arr, message: "data_sent" });
 });
+
+router.post("/ticketStatus",async(req,res)=>{
+  console.log(req.body)
+  let ticketId=req.body.ticketId;
+  console.log(ticketId)
+  let d=await user.findOne({ticketId:ticketId})
+  if(!d){
+    res.status(200).json({success:false,data:null,message:"Ticket is invalid"})
+  }
+  else{
+    res.status(200).json({success:true,data:d,message:"Ticket is valid"})
+  }
+    
+})
 module.exports = router;
