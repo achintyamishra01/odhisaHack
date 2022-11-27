@@ -3,7 +3,7 @@ const router = express.Router();
 const twilio = require("twilio");
 const dotenv = require("dotenv");
 const user = require("../schema/userschema");
-const fs = require("fs");
+const municipal = require("../schema/municipalschema")
 
 const arr = [
   { 750017: "Bhubaneshwar Municipal Corporation" },
@@ -77,6 +77,41 @@ router.post("/track", async (req, res) => {
 });
 
 
+
+router.post("/register", async (req, res) => {
+
+  const check = await municipal.findOne({name:req.body.name});
+
+  if(check==null){
+    const municipal_corp = municipal.create({
+      name: req.body.name,
+      password: req.body.password
+    });
+  
+    res.status(200).json({ success: true, message: "Municipal Corporation Created" });
+
+  }else{
+    res.status(200).json({success:true,message:"User already exists"});
+  }
+
+});
+
+router.post("/signIn",async (req,res)=>{
+  const municipal_corp = await municipal.findOne({name:req.body.name});
+
+  if(municipal_corp==null){
+    res.status(200).json({success:true,message:"Invalid municipal corporation"});
+  }
+  else{
+    if(municipal_corp.password === req.body.password){
+      res.status(200).json({success:true,message:"Successfully logged In"});
+    }
+    else{
+      res.status(200).json({success:true,message:"Incorrect Password"});
+    }
+  }
+});
+
 function send_SMS(num, ticketId) {
   let mes = `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
   console.log(mes);
@@ -90,9 +125,7 @@ function send_SMS(num, ticketId) {
     .catch((error) => console.log(error));
 }
 
-router.post("/municipality", async (req, res) => {
-  res.status(200).json({ success: true, data: arr, message: "data_sent" });
-});
+
 
 router.post("/ticketStatus",async(req,res)=>{
   let ticketId=req.body.ticketId;
