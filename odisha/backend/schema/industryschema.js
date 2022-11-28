@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const industrySchema = new mongoose.Schema({
+    ticketId:{
+        type:Number,
+    },
     issue:{
         type:String,
         required:true
@@ -16,6 +19,10 @@ const industrySchema = new mongoose.Schema({
     pincode:{
         type:Number,
         required:true
+    },
+    status:{
+        type:String,
+        default:"pending"
     },
     myFile:{
         data:String

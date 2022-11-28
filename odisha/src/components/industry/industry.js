@@ -14,10 +14,8 @@ function Industry() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const data = {issue,industry_name,locality,pincode,image};
-
-    console.log(image);
 
     const res = await fetch('/api/complainIndustry',{
       method:'POST',
@@ -29,7 +27,6 @@ function Industry() {
     const content = await res.json();
     console.log(content);
   };
-
 
   const handleChange = (e) => {
     if(e.target.name === "issue"){

@@ -203,6 +203,7 @@ router.post('/complainIndustry', async (req, res) => {
     }
     else {
       const complain = industry.create({
+        ticketId:Date.now(),
         issue: req.body.issue,
         industry_name: req.body.industry_name,
         locality: req.body.locality,
@@ -247,6 +248,7 @@ router.post("/fetchGovComplaints",async(req,res)=>{
     res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
   }
 })
+
 router.post("/resolveMunicipalComplaints",async(req,res)=>{
   
   const a=req.body.ticketId
@@ -261,6 +263,7 @@ router.post("/resolveGovComplaints",async(req,res)=>{
   await user.findOneAndUpdate({ticketId:a},{status:"resolved"})
   res.status(200).json({success:true,data:null,message:"status updated"})
 })
+
 
 router.post("/fetchPendingIndustryComplaints",async(req,res)=>{
   let d=await industry.find({status:"pending"})
