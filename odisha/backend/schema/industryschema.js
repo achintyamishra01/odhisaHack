@@ -17,6 +17,10 @@ const industrySchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    status:{
+        type:String,
+        default:"pending"
+    },
     myFile:{
         data:String
     }
