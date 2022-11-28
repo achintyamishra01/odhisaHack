@@ -4,12 +4,15 @@ import "../complain/complain.css";
 
 const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
+  const [data2, setdata2] = useState([]);
+  const [data3, setdata3] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("committee")) {
       navigate("/committee");
     }
     fetchComplaints();
+    fetchPendingIndustryComplaints();
   }, []);
 
   const fetchComplaints = async () => {
@@ -22,11 +25,25 @@ const CommitteelDashboard = () => {
     const c = await res.json();
 
     if (c.data) {
-      console.log(c.data);
       setdata1(c.data);
     } else {
       document.getElementById("Gov_complaints").innerHTML =
         "No complaints so far!!!";
+    }
+  };
+
+  const fetchPendingIndustryComplaints = async () => {
+    const res = await fetch("/api/fetchPendingIndustryComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const c = await res.json();
+
+    if (c.data) {
+      console.log(c.data);
+      setdata2(c.data);
     }
   };
 
@@ -88,6 +105,22 @@ const CommitteelDashboard = () => {
       </td>
     </tr>
   ));
+  const renderList1 = data2.map((item, index) => {
+    <tr>
+      <td className="trackd">{item.issue}</td>
+      <td className="trackd">{item.industry_name}</td>
+      <td className="trackd">{item.locality}</td>
+      <td className="trackd">{item.pincode}</td>
+      <td className="trackd">{item.status}</td>
+      <td className="trackd">
+        <img src={item.myFile}></img>
+      </td>
+      <td className="trackd">
+        <button className="resbut">Reject</button>
+        <button className="resbut">Verify</button>
+      </td>
+    </tr>;
+  });
 
   const [toggleState, setToggleState] = useState(1);
 

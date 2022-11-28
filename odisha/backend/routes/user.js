@@ -203,6 +203,7 @@ router.post('/complainIndustry', async (req, res) => {
     }
     else {
       const complain = industry.create({
+        ticketId:Date.now(),
         issue: req.body.issue,
         industry_name: req.body.industry_name,
         locality: req.body.locality,
@@ -263,4 +264,23 @@ router.post("/resolveGovComplaints",async(req,res)=>{
   res.status(200).json({success:true,data:null,message:"status updated"})
 })
 
+
+router.post("/fetchPendingIndustryComplaints",async(req,res)=>{
+  let d=await industry.find({status:"pending"})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Pending Industry complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
+  }
+})
+router.post("/fetchVerifiedIndustryComplaints",async(req,res)=>{
+  let d=await industry.find({status:"verified"})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Verified Industry complaints fetched"})
+  }
+  else{
+    res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
+  }
+})
 module.exports = router; 

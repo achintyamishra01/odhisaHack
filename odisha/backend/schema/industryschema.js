@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const industrySchema = new mongoose.Schema({
+    ticketId:{
+        type:Number,
+    },
     issue:{
         type:String,
         required:true
