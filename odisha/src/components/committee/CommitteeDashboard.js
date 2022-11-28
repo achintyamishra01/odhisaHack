@@ -194,8 +194,8 @@ const logout=async()=>{
                   </table>
                 </div>
               )}
-              {data2.length === 0 && (
-                <div id="complaints1">No Pending Industry complaints so far!!</div>
+              {data1.length === 0 && (
+                <div id="complaints1">No  complaints so far!!</div>
               )}
             </div>
             <div
@@ -203,7 +203,11 @@ const logout=async()=>{
                 toggleState === 2 ? "content  active-content" : "content"
               }
             >
-            
+            <div>
+            {data2.map(item => (
+        <li>{item.issue}</li>
+      ))}
+            </div>
             </div>
           </div>
         </div>
@@ -211,7 +215,7 @@ const logout=async()=>{
     </div>
     
   
-      {data1.length === 0 && <div id="complaints1">No complaints so far!!</div>}
+      {data2.length === 0 && <div id="complaints1">No complaints so far!!</div>}
     </>
   );
 };

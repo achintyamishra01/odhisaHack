@@ -22,7 +22,7 @@ function App() {
         <Route path="/industry" element={<Industry />} />
         <Route path="/municipalDashboard" element={<MunicipalDashboard />} />
         <Route path="/committeeDashboard" element={<CommitteelDashboard />} />
-        <Route path="/indDash" element={<IndustryDashboard />} />
+        {/* <Route path="/indDash" element={<IndustryDashboard />} /> */}
         {/* <Route path="/industryLogin" element={<IndustryLogin />} /> */}
         <Route path="/mvp" element={<Mvp />} />
       </Routes>
