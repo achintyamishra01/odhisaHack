@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./track.css";
+import Navbar from "../navbar/Navbar";
 
 const Track = () => {
   var ticket, status, address, name, pin;
@@ -78,25 +79,28 @@ const Track = () => {
   };
 
   return (
-    <div id="badadibba">
-      <div className="form-container">
-        <form className="Form">
-          <input
-            type="text"
-            name="complaint_Ticket"
-            id="complaint_Ticket"
-            placeholder="Enter ticket id u want to track"
-            onChange={handleChange}
-          />
-          <button onClick={handleSubmit} id="trs">
-            Track
-          </button>
-        </form>
+    <div>
+      <Navbar></Navbar>
+      <div id="badadibba">
+        <div className="form-container">
+          <form className="Form">
+            <input
+              type="text"
+              name="complaint_Ticket"
+              id="complaint_Ticket"
+              placeholder="Enter ticket id u want to track"
+              onChange={handleChange}
+            />
+            <button onClick={handleSubmit} id="trs">
+              Track
+            </button>
+          </form>
+        </div>
+        <table id="tab" className="tab"></table>
+        <button onClick={handleResolve} id="upperauth">
+          Push to higher authorities
+        </button>
       </div>
-      <table id="tab" className="tab"></table>
-      <button onClick={handleResolve} id="upperauth">
-        Push to higher authorities
-      </button>
     </div>
   );
 };
