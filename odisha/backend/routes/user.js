@@ -203,6 +203,7 @@ router.post('/complainIndustry', async (req, res) => {
     }
     else {
       const complain = industry.create({
+        ticketId:Date.now(),
         issue: req.body.issue,
         industry_name: req.body.industry_name,
         locality: req.body.locality,

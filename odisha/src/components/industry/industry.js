@@ -14,7 +14,7 @@ function Industry() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const data = {issue,industry_name,locality,pincode,image};
 
     const res = await fetch('/api/complainIndustry',{
