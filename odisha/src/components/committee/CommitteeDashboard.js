@@ -6,9 +6,9 @@ const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-      if(!localStorage.getItem("committee")){
-        navigate("/committee")
-      }
+    if (!localStorage.getItem("committee")) {
+      navigate("/committee");
+    }
     fetchComplaints();
   }, []);
 
@@ -30,9 +30,25 @@ const CommitteelDashboard = () => {
     }
   };
   const renderList = data1.map((item, index) => (
-    <p>
-      {item.name} {item.address}
-    </p>
+    <table>
+      {/* {item.name} {item.address} */}
+      <tr>
+        <th class="trackh">Municipality</th>
+        <th class="trackh"></th>
+        <th class="trackh">Locality</th>
+        <th class="trackh">Pincode</th>
+        <th class="trackh">Proof</th>
+        <th class="trackh">Verify</th>
+      </tr>
+      <tr>
+        <td class="trackd">{item.name}</td>
+        <td class="trackd">Industry Name</td>
+        <td class="trackd">Locality</td>
+        <td class="trackd">Pincode</td>
+        <td class="trackd">Proof</td>
+        <td class="trackd">Verify</td>
+      </tr>
+    </table>
   ));
   return (
     <div>
@@ -48,73 +64,7 @@ const CommitteelDashboard = () => {
         <h2>
           <u>Industry Complaint :</u>
         </h2>
-        <table id="Gov_complaints">
-          <tr>
-            <th>Issue</th>
-            <th>Industry Name</th>
-            <th>Locality</th>
-            <th>Pincode</th>
-            <th>Proof</th>
-            <th>Verify</th>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          <tr>
-            <td>Issue</td>
-            <td>Industry Name</td>
-            <td>Locality</td>
-            <td>Pincode</td>
-            <td>Proof</td>
-            <td>Verify</td>
-          </tr>
-          {renderList}
-        </table>
+        <div id="Gov_complaints">{renderList}</div>
       </div>
     </div>
   );

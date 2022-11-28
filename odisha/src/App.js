@@ -7,7 +7,7 @@ import Municipal from "./components/municipal/Municipal";
 import Industry from "./components/industry/Industry";
 import MunicipalDashboard from "./components/municipal/MunicipalDashboard";
 import CommitteelDashboard from "./components/committee/CommitteeDashboard";
-
+import Mvp from "./components/dutta/Mvp";
 
 function App() {
   return (
@@ -17,9 +17,10 @@ function App() {
         <Route path="/committee" element={<Committee />} />
         <Route path="/municipal" element={<Municipal />} />
         <Route path="/track" element={<Track />} />
-        <Route path="/industry" element={<Industry/>} />
+        <Route path="/industry" element={<Industry />} />
         <Route path="/municipalDashboard" element={<MunicipalDashboard />} />
         <Route path="/committeeDashboard" element={<CommitteelDashboard />} />
+        <Route path="/mvp" element={<Mvp />} />
       </Routes>
     </BrowserRouter>
   );
