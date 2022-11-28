@@ -229,7 +229,7 @@ router.post("/fetchComplaints",async(req,res)=>{
   
   let municipal=req.body.d
 
-  let d=await user.find({municipality:municipal})
+  let d=await user.find({municipality:municipal,status:"pending"})
   if(d){
     res.status(200).json({success:true,data:d,message:"complaints fetched"})
   }
