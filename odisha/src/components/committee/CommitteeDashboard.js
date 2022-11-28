@@ -4,13 +4,17 @@ import "../complain/complain.css";
 
 const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
+const [data2, setdata2] = useState([])
+const [data3, setdata3] = useState([])
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("committee")) {
       navigate("/committee");
     }
     fetchComplaints();
+    fetchPendingIndustryComplaints();
   }, []);
+
 
   const fetchComplaints = async () => {
     const res = await fetch("/api/fetchGovComplaints", {
@@ -22,13 +26,29 @@ const CommitteelDashboard = () => {
     const c = await res.json();
 
     if (c.data) {
-      console.log(c.data);
+      
       setdata1(c.data);
     } else {
       document.getElementById("Gov_complaints").innerHTML =
         "No complaints so far!!!";
     }
   };
+
+const fetchPendingIndustryComplaints=async()=>{
+  const res = await fetch("/api/fetchPendingIndustryComplaints", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const c = await res.json();
+
+  if (c.data) {
+    console.log(c.data);
+    setdata2(c.data);
+  } 
+}
+
 
   async function resolveGovComplaints(ticketId){
     console.log(ticketId)
@@ -85,6 +105,20 @@ const logout=async()=>{
       </td>
     </tr>
   ));
+  const renderList1=data2.map((item,index)=>{
+    <tr>
+    <td className="trackd">{item.issue}</td>
+    <td className="trackd">{item.industry_name}</td>
+    <td className="trackd">{item.locality}</td>
+    <td className="trackd">{item.pincode}</td>
+    <td className="trackd">{item.status}</td>
+    <td className="trackd"><img src={item.myFile}></img></td>
+    <td className="trackd">
+    <button className="resbut" >Reject</button>
+    <button className="resbut" >Verify</button>
+    </td>
+  </tr>
+  })
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -151,8 +185,8 @@ const logout=async()=>{
                   </table>
                 </div>
               )}
-              {data1.length === 0 && (
-                <div id="complaints1">No complaints so far!!</div>
+              {data2.length === 0 && (
+                <div id="complaints1">No Pending Industry complaints so far!!</div>
               )}
             </div>
             <div
@@ -160,10 +194,7 @@ const logout=async()=>{
                 toggleState === 2 ? "content  active-content" : "content"
               }
             >
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla
-              nam ullam, incidunt iste illum consequatur aliquam laboriosam,
-              reprehenderit quia dolor mollitia architecto nesciunt, quasi
-              veniam similique sequi vel cupiditate sapiente?
+              { renderList1}
             </div>
           </div>
         </div>
