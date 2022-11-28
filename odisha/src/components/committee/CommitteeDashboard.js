@@ -29,28 +29,27 @@ const CommitteelDashboard = () => {
         "No complaints so far!!!";
     }
   };
+  {
+    /* <tr>
+    <th class="trackh">Issue</th>
+    <th class="trackh">Industry Name</th>
+    <th class="trackh">Locality</th>
+    <th class="trackh">Pincode</th>
+    <th class="trackh">Proof</th>
+    <th class="trackh">Verify</th>
+    <th class="trackh">Resolution</th>
+  </tr> */
+  }
   const renderList = data1.map((item, index) => (
-    <table>
-      {/* {item.name} {item.address} */}
-      <tr>
-        <th class="trackh">TicketID</th>
-        <th class="trackh">Municipality</th>
-        <th class="trackh">Compalainee</th>
-        <th class="trackh">Locality</th>
-        <th class="trackh">Pincode</th>
-        <th class="trackh">Phone</th>
-        <th class="trackh">Status</th>
-        <th class="trackh">resolved</th>
-      </tr>
-      <tr>
-        <td class="trackd">{item.name}</td>
-        <td class="trackd">Industry Name</td>
-        <td class="trackd">Locality</td>
-        <td class="trackd">Pincode</td>
-        <td class="trackd">Proof</td>
-        <td class="trackd">Verify</td>
-      </tr>
-    </table>
+    <tr>
+      <td className="trackd">{item.ticketId}</td>
+      <td className="trackd">{item.municipality}</td>
+      <td className="trackd">{item.name}</td>
+      <td className="trackd">{item.phone}</td>
+      <td className="trackd">
+        <button className="resbut">Yes?</button>
+      </td>
+    </tr>
   ));
   return (
     <div>
@@ -66,7 +65,19 @@ const CommitteelDashboard = () => {
         <h2>
           <u>Industry Complaint :</u>
         </h2>
-        <div id="Gov_complaints">{renderList}</div>
+        <div id="Gov_complaints">
+          <table class="tab">
+            {/* {item.name} {item.address} */}
+            <tr>
+              <th class="trackh">TicketID</th>
+              <th class="trackh">Municipality</th>
+              <th class="trackh">Complainee</th>
+              <th class="trackh">Phone</th>
+              <th class="trackh">Resolution</th>
+            </tr>
+            {renderList}
+          </table>
+        </div>
       </div>
     </div>
   );
