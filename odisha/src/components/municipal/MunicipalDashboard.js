@@ -57,6 +57,10 @@ const MunicipalDashboard = () => {
     }
 
   }
+  const logout=async()=>{
+    localStorage.removeItem("municipal")
+    window.location.reload()
+  }
   
   const renderList = data1.map((item, index) => (
     <tr>
@@ -80,6 +84,7 @@ const MunicipalDashboard = () => {
         </a>
         <div>
           <h2>Municipal Dashboard</h2>
+          <button onClick={logout}>Logout</button>
         </div>
       </div>
       <div id="outerdashmun">
