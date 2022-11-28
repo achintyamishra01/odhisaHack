@@ -29,6 +29,10 @@
   border: 0.1px solid black;
   color: white;
   background-color: green;
+  cursor: pointer;
+}
+#trs:hover {
+  transform: scale(1.03);
 }
 #upperauth {
   margin-top: 0;
@@ -39,8 +43,12 @@
   color: white;
   background-color: rgb(241, 72, 72);
   margin: auto;
+  cursor: pointer;
 }
-#tab {
+#upperauth:hover {
+  transform: scale(1.03);
+}
+.tab {
   border: 1px solid black;
   border-collapse: collapse;
   background-color: white;

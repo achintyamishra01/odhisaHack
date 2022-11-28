@@ -1,0 +1,13 @@
+#outerdashmun {
+  height: 100vh;
+  background-color: #ebf9db;
+  width: 84vw;
+  padding: 10vh 7vw;
+}
+.resbut {
+  color: white;
+  background-color: green;
+  border: none;
+  margin-left: 0.6em;
+  cursor: pointer;
+}
