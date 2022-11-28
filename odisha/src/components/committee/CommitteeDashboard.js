@@ -203,15 +203,15 @@ const CommitteelDashboard = () => {
                   toggleState === 2 ? "content  active-content" : "content"
                 }
               >
-                <div>
+                {data2.length!==0 && <div>
                   <table id="tabtab">
                     {/* {item.name} {item.address} */}
                     <tr>
-                      <th class="trackh">TicketID</th>
-                      <th class="trackh">Municipality</th>
-                      <th class="trackh">Complainee</th>
-                      <th class="trackh">Phone</th>
-                      <th class="trackh">Resolution</th>
+                      <th className="trackh">TicketID</th>
+                      <th className="trackh">Municipality</th>
+                      <th className="trackh">Complainee</th>
+                      <th className="trackh">Phone</th>
+                      <th className="trackh">Resolution</th>
                     </tr>
                     {data2.map((item) => (
                       <tr>
@@ -234,23 +234,26 @@ const CommitteelDashboard = () => {
                       </tr>
                     ))}
                   </table>
-                </div>
+                </div>}
+                {data2.length === 0 && (
+                  <div id="complaints1">No complaints so far!!</div>
+                )}
               </div>
               <div
                 className={
                   toggleState === 3 ? "content  active-content" : "content"
                 }
               >
-                <div>
+               { data3.length!==0 && <div>
                   <table id="tabtab">
                     {/* {item.name} {item.address} */}
                     <tr>
-                      <th class="trackh">TicketID</th>
-                      <th class="trackh">Municipality</th>
-                      <th class="trackh">Complainee</th>
-                      <th class="trackh">Phone</th>
-                      <th class="trackh">Resolution</th>
-                    </tr>
+                      <th className="trackh">TicketID</th>
+                      <th className="trackh">Municipality</th>
+                      <th className="trackh">Complainee</th>
+                      <th className="trackh">Phone</th>
+                      <th className="trackh">Resolution</th>
+                    </tr> 
                     {data3.map((item) => (
                       <tr>
                         <td className="trackd">{item.ticketId}</td>
@@ -272,14 +275,17 @@ const CommitteelDashboard = () => {
                       </tr>
                     ))}
                   </table>
-                </div>
+                </div>}
+                {data3.length === 0 && (
+                  <div id="complaints1">No complaints so far!!</div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {data2.length === 0 && <div id="complaints1">No complaints so far!!</div>}
+
     </>
   );
 };
