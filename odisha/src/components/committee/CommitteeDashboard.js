@@ -4,8 +4,8 @@ import "../complain/complain.css";
 
 const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
-const [data2, setdata2] = useState([])
-const [data3, setdata3] = useState([])
+  const [data2, setdata2] = useState([]);
+  const [data3, setdata3] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("committee")) {
@@ -15,7 +15,6 @@ const [data3, setdata3] = useState([])
     fetchPendingIndustryComplaints();
     fetchVerifiedIndustryComplaints();
   }, []);
-
 
   const fetchComplaints = async () => {
     const res = await fetch("/api/fetchGovComplaints", {
@@ -27,7 +26,6 @@ const [data3, setdata3] = useState([])
     const c = await res.json();
 
     if (c.data) {
-      
       setdata1(c.data);
     } else {
       document.getElementById("Gov_complaints").innerHTML =
@@ -35,14 +33,14 @@ const [data3, setdata3] = useState([])
     }
   };
 
-const fetchPendingIndustryComplaints=async()=>{
-  const res = await fetch("/api/fetchPendingIndustryComplaints", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  const c = await res.json();
+  const fetchPendingIndustryComplaints = async () => {
+    const res = await fetch("/api/fetchPendingIndustryComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const c = await res.json();
 
   if (c.data) {
 
@@ -89,24 +87,47 @@ const fetchVerifiedIndustryComplaints=async()=>{
     }
 
   }
+  async function resolveGovComplaints(ticketId) {
+    console.log(ticketId);
+    let tId = { ticketId };
+    const res = await fetch("/api/resolveGovComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tId),
+    });
+    const d = await res.json();
+    console.log(d);
+    if (d.success) {
+      console.log("reloading");
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+    }
+  }
 
 const logout=async()=>{
   localStorage.removeItem("committee")
   window.location.reload()
 }
-  const renderList1 = data1.map((item, index) => (
+  const renderList = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
       <td className="trackd">{item.municipality}</td>
       <td className="trackd">{item.name}</td>
       <td className="trackd">{item.phone}</td>
       <td className="trackd">
-      <button className="resbut" onClick={()=>resolveGovComplaints(item.ticketId)}>Yes?</button>
+        <button
+          className="resbut"
+          onClick={() => resolveGovComplaints(item.ticketId)}
+        >
+          Yes?
+        </button>
       </td>
     </tr>
   ));
-
-
+  
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -117,19 +138,19 @@ const logout=async()=>{
 
   return (
     <>
-    <div>
-      <div id="gchead">
-        <a href="/">
-          <img src={require("../../Assets/logo.png")} alt="" />
-        </a>
-        <div>
-          <h2>Governing Committee Dashboard</h2>
-          <button onClick={logout}>Logout</button>
+      <div>
+        <div id="gchead">
+          <a href="/">
+            <img src={require("../../Assets/logo.png")} alt="" />
+          </a>
+          <div>
+            <h2>Governing Committee Dashboard</h2>
+            <button onClick={logout}>Logout</button>
+          </div>
         </div>
-      </div>
-      <div id="notelse">
-        <div className="container">
-          {/* <h2>
+        <div id="notelse">
+          <div className="container">
+            {/* <h2>
           <u>Industry Complaint :</u>
         </h2> */}
           <div className="bloc-tabs">
@@ -169,11 +190,11 @@ const logout=async()=>{
                       <th class="trackh">Phone</th>
                       <th class="trackh">Resolution</th>
                     </tr>
-                    {renderList1}
+                    {renderList}
                   </table>
                 </div>
               )}
-              {data1.length === 0 && (
+              {data2.length === 0 && (
                 <div id="complaints1">No Pending Industry complaints so far!!</div>
               )}
             </div>
@@ -182,28 +203,7 @@ const logout=async()=>{
                 toggleState === 2 ? "content  active-content" : "content"
               }
             >
-              
-
-              <div> {data2.map(item => (
-                <>
-               <li>{item.issue}</li>
-               <li>{item.locality}</li>
-               <li>{item.municipality}</li>
-               <li>{item.status}</li>
-               <span></span>
-               </>
-                ))}
-              </div>
-              <div> {data3.map(item => (
-                <>
-               <li>{item.issue}</li>
-               <li>{item.locality}</li>
-               <li>{item.municipality}</li>
-               <li>{item.status}</li>
-               <span></span>
-               </>
-                ))}
-              </div>
+            
             </div>
           </div>
         </div>
@@ -211,6 +211,7 @@ const logout=async()=>{
     </div>
     
   
+      {data1.length === 0 && <div id="complaints1">No complaints so far!!</div>}
     </>
   );
 };

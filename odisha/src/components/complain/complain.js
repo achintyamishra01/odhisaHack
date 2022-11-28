@@ -126,6 +126,7 @@ const Complain = () => {
               name="municipality"
               className="ipfield"
               value={municipality}
+              placeholder="Municipality / नगरपालिका"
             />
             <br />
             <div id="cbox">
