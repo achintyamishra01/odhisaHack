@@ -70,7 +70,10 @@ const CommitteelDashboard = () => {
       alert("Something went wrong");
     }
   }
-
+const logout=async()=>{
+  localStorage.removeItem("committee")
+  window.location.reload()
+}
   const renderList = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
@@ -99,6 +102,7 @@ const CommitteelDashboard = () => {
         </a>
         <div>
           <h2>Governing Committee Dashboard</h2>
+          <button onClick={logout}>Logout</button>
         </div>
       </div>
       <div id="notelse">
