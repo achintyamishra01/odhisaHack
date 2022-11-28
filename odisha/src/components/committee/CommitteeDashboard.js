@@ -13,6 +13,7 @@ const [data3, setdata3] = useState([])
     }
     fetchComplaints();
     fetchPendingIndustryComplaints();
+    fetchVerifiedIndustryComplaints();
   }, []);
 
 
@@ -44,10 +45,27 @@ const fetchPendingIndustryComplaints=async()=>{
   const c = await res.json();
 
   if (c.data) {
-    console.log(c.data);
+
     setdata2(c.data);
   } 
+
 }
+const fetchVerifiedIndustryComplaints=async()=>{
+  const res = await fetch("/api/fetchVerifiedIndustryComplaints", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const c = await res.json();
+
+  if (c.data) {
+
+    setdata3(c.data);
+  } 
+
+}
+
 
 
   async function resolveGovComplaints(ticketId){
@@ -71,30 +89,12 @@ const fetchPendingIndustryComplaints=async()=>{
     }
 
   }
-  async function resolveGovComplaints(ticketId) {
-    console.log(ticketId);
-    let tId = { ticketId };
-    const res = await fetch("/api/resolveGovComplaints", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(tId),
-    });
-    const d = await res.json();
-    console.log(d);
-    if (d.success) {
-      console.log("reloading");
-      window.location.reload();
-    } else {
-      alert("Something went wrong");
-    }
-  }
+
 const logout=async()=>{
   localStorage.removeItem("committee")
   window.location.reload()
 }
-  const renderList = data1.map((item, index) => (
+  const renderList1 = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
       <td className="trackd">{item.municipality}</td>
@@ -105,20 +105,8 @@ const logout=async()=>{
       </td>
     </tr>
   ));
-  const renderList1=data2.map((item,index)=>{
-    <tr>
-    <td className="trackd">{item.issue}</td>
-    <td className="trackd">{item.industry_name}</td>
-    <td className="trackd">{item.locality}</td>
-    <td className="trackd">{item.pincode}</td>
-    <td className="trackd">{item.status}</td>
-    <td className="trackd"><img src={item.myFile}></img></td>
-    <td className="trackd">
-    <button className="resbut" >Reject</button>
-    <button className="resbut" >Verify</button>
-    </td>
-  </tr>
-  })
+
+
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -181,11 +169,11 @@ const logout=async()=>{
                       <th class="trackh">Phone</th>
                       <th class="trackh">Resolution</th>
                     </tr>
-                    {renderList}
+                    {renderList1}
                   </table>
                 </div>
               )}
-              {data2.length === 0 && (
+              {data1.length === 0 && (
                 <div id="complaints1">No Pending Industry complaints so far!!</div>
               )}
             </div>
@@ -194,15 +182,35 @@ const logout=async()=>{
                 toggleState === 2 ? "content  active-content" : "content"
               }
             >
-              { renderList1}
+              
+
+              <div> {data2.map(item => (
+                <>
+               <li>{item.issue}</li>
+               <li>{item.locality}</li>
+               <li>{item.municipality}</li>
+               <li>{item.status}</li>
+               <span></span>
+               </>
+                ))}
+              </div>
+              <div> {data3.map(item => (
+                <>
+               <li>{item.issue}</li>
+               <li>{item.locality}</li>
+               <li>{item.municipality}</li>
+               <li>{item.status}</li>
+               <span></span>
+               </>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    {
-          data1.length===0 && <div id ="complaints1">No complaints so far!!</div>
-        }
+    
+  
     </>
   );
 };
