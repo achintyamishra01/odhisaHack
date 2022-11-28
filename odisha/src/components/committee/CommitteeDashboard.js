@@ -33,12 +33,14 @@ const CommitteelDashboard = () => {
     <table>
       {/* {item.name} {item.address} */}
       <tr>
+        <th class="trackh">TicketID</th>
         <th class="trackh">Municipality</th>
-        <th class="trackh"></th>
+        <th class="trackh">Compalainee</th>
         <th class="trackh">Locality</th>
         <th class="trackh">Pincode</th>
-        <th class="trackh">Proof</th>
-        <th class="trackh">Verify</th>
+        <th class="trackh">Phone</th>
+        <th class="trackh">Status</th>
+        <th class="trackh">resolved</th>
       </tr>
       <tr>
         <td class="trackd">{item.name}</td>

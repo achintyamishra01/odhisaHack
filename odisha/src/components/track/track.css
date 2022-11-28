@@ -40,7 +40,7 @@
   background-color: rgb(241, 72, 72);
   margin: auto;
 }
-#tab {
+.tab {
   border: 1px solid black;
   border-collapse: collapse;
   background-color: white;
