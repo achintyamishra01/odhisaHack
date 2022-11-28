@@ -16,6 +16,14 @@ const Navbar = () => {
           </li>
           <li>
             {" "}
+            <Link to="/industry">Industry-Complaint</Link>
+          </li>
+          <li>
+            {" "}
+            <Link to="/">Industry</Link>
+          </li>
+          <li>
+            {" "}
             <Link to="/Committee">Committee</Link>
           </li>
           <li>
