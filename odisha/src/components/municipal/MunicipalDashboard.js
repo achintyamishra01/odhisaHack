@@ -25,13 +25,39 @@ const MunicipalDashboard = () => {
     const c = await res.json();
 
     if (c.success) {
-      console.log(c.data);
-      setdata1(c.data);
+      if(c.data){
+        
+        setdata1(c.data);
+      }
+      
+      // console.log(c.data);
     } else {
       alert("something went wrong");
     }
   };
+ 
+  async function resolveComplaints(ticketId){
+    console.log(ticketId)
+    let tId={ticketId}
+    const res = await fetch("/api/resolveMunicipalComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body:JSON.stringify(tId)
+    });
+    const d=await res.json();
+    console.log(d)
+    if(d.success){
+      console.log("reloading")
+      window.location.reload();
+    }
+    else{
+      alert("Something went wrong")
+    }
 
+  }
+  
   const renderList = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
@@ -42,7 +68,7 @@ const MunicipalDashboard = () => {
       <td className="trackd">{item.phone}</td>
       <td className="trackd">{item.status}</td>
       <td className="trackd">
-        <button className="resbut">Yes?</button>
+        <button className="resbut" onClick={()=>resolveComplaints(item.ticketId)}>Yes?</button>
       </td>
     </tr>
   ));
@@ -60,7 +86,7 @@ const MunicipalDashboard = () => {
         <h2>
           <u>Civilian Requests :</u>
         </h2>
-        <div id="complaints">
+        {data1.length!==0 && <div id="complaints">
           <table class="tab">
             <tr>
               <th className="trackh">TicketID</th>
@@ -74,7 +100,10 @@ const MunicipalDashboard = () => {
             </tr>
             {renderList}
           </table>
-        </div>
+        </div>}
+        {
+          data1.length===0 && <div id ="complaints1">No complaints so far!!</div>
+        }
       </div>
     </div>
   );
