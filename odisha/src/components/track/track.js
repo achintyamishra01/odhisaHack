@@ -93,7 +93,7 @@ const Track = () => {
           </button>
         </form>
       </div>
-      <table class="tab"></table>
+      <table id="tab" className="tab"></table>
       <button onClick={handleResolve} id="upperauth">
         Push to higher authorities
       </button>
