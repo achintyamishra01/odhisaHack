@@ -239,7 +239,7 @@ router.post("/fetchComplaints",async(req,res)=>{
 })
 
 router.post("/fetchGovComplaints",async(req,res)=>{
-  let d=await user.find({gov_com:true})
+  let d=await user.find({gov_com:true,status:"pending"})
   if(d){
     res.status(200).json({success:true,data:d,message:"Gov complaints fetched"})
   }
@@ -254,4 +254,11 @@ router.post("/resolveMunicipalComplaints",async(req,res)=>{
   await user.findOneAndUpdate({ticketId:a},{status:"resolved"})
   res.status(200).json({success:true,data:null,message:"status updated"})
 })
-module.exports = router;
+
+router.post("/resolveGovComplaints",async(req,res)=>{
+  const a=req.body.ticketId
+  console.log(a)
+  await user.findOneAndUpdate({ticketId:a},{status:"resolved"})
+  res.status(200).json({success:true,data:null,message:"status updated"})
+})
+module.exports = router; 
