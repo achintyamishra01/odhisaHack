@@ -42,50 +42,42 @@ const CommitteelDashboard = () => {
     });
     const c = await res.json();
 
-  if (c.data) {
+    if (c.data) {
+      setdata2(c.data);
+    }
+  };
+  const fetchVerifiedIndustryComplaints = async () => {
+    const res = await fetch("/api/fetchVerifiedIndustryComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const c = await res.json();
 
-    setdata2(c.data);
-  } 
+    if (c.data) {
+      setdata3(c.data);
+    }
+  };
 
-}
-const fetchVerifiedIndustryComplaints=async()=>{
-  const res = await fetch("/api/fetchVerifiedIndustryComplaints", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  const c = await res.json();
-
-  if (c.data) {
-
-    setdata3(c.data);
-  } 
-
-}
-
-
-
-  async function resolveGovComplaints(ticketId){
-    console.log(ticketId)
-    let tId={ticketId}
+  async function resolveGovComplaints(ticketId) {
+    console.log(ticketId);
+    let tId = { ticketId };
     const res = await fetch("/api/resolveGovComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body:JSON.stringify(tId)
+      body: JSON.stringify(tId),
     });
-    const d=await res.json();
-    console.log(d)
-    if(d.success){
-      console.log("reloading")
+    const d = await res.json();
+    console.log(d);
+    if (d.success) {
+      console.log("reloading");
       window.location.reload();
+    } else {
+      alert("Something went wrong");
     }
-    else{
-      alert("Something went wrong")
-    }
-
   }
   async function resolveGovComplaints(ticketId) {
     console.log(ticketId);
@@ -107,10 +99,10 @@ const fetchVerifiedIndustryComplaints=async()=>{
     }
   }
 
-const logout=async()=>{
-  localStorage.removeItem("committee")
-  window.location.reload()
-}
+  const logout = async () => {
+    localStorage.removeItem("committee");
+    window.location.reload();
+  };
   const renderList = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
@@ -127,7 +119,6 @@ const logout=async()=>{
       </td>
     </tr>
   ));
-  
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -153,34 +144,66 @@ const logout=async()=>{
             {/* <h2>
           <u>Industry Complaint :</u>
         </h2> */}
-          <div className="bloc-tabs">
-            <button
-              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(1)}
-              id="bon1"
-            >
-              <u>
-                <b>Civilian Complaints</b>
-              </u>
-            </button>
-            <button
-              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(2)}
-              id="bon2"
-            >
-              <u>
-                <b>Industry Complaints</b>
-              </u>
-            </button>
-          </div>
-          <div className="content-tabs">
-            <div
-              className={
-                toggleState === 1 ? "content  active-content" : "content"
-              }
-            >
-              {data1.length !== 0 && (
-                <div id="Gov_complaints">
+            <div className="bloc-tabs">
+              <button
+                className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(1)}
+                id="bon1"
+              >
+                <u>
+                  <b>Civilian Complaints</b>
+                </u>
+              </button>
+              <button
+                className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(2)}
+                id="bon2"
+              >
+                <u>
+                  <b>Industry Complaints</b>
+                </u>
+              </button>
+              <button
+                className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+                onClick={() => toggleTab(3)}
+                id="bon2"
+              >
+                <u>
+                  <b>Industry Complaints</b>
+                </u>
+              </button>
+            </div>
+            <div className="content-tabs">
+              <div
+                className={
+                  toggleState === 1 ? "content  active-content" : "content"
+                }
+              >
+                {data1.length !== 0 && (
+                  <div id="Gov_complaints">
+                    <table id="tabtab">
+                      {/* {item.name} {item.address} */}
+                      <tr>
+                        <th class="trackh">TicketID</th>
+                        <th class="trackh">Municipality</th>
+                        <th class="trackh">Complainee</th>
+                        <th class="trackh">Phone</th>
+                        <th class="trackh">Resolution</th>
+                      </tr>
+                      {renderList}
+                    </table>
+                  </div>
+                )}
+                {data1.length === 0 && (
+                  <div id="complaints1">No complaints so far!!</div>
+                )}
+              </div>
+              <div
+                className={
+                  toggleState === 2 ? "content  active-content" : "content"
+                }
+              >
+                <div>
                   <table id="tabtab">
                     {/* {item.name} {item.address} */}
                     <tr>
@@ -190,31 +213,72 @@ const logout=async()=>{
                       <th class="trackh">Phone</th>
                       <th class="trackh">Resolution</th>
                     </tr>
-                    {renderList}
+                    {data2.map((item) => (
+                      <tr>
+                        <td className="trackd">{item.ticketId}</td>
+                        <td className="trackd">{item.issue}</td>
+                        <td className="trackd">{item.industry_name}</td>
+                        <td className="trackd">{item.status}</td>
+                        <td className="trackd">
+                          <span>
+                            <button id="verify" className="accbutt">
+                              &#x2713;
+                            </button>
+                          </span>
+                          <span>
+                            <button id="reject" className="accbutt">
+                              &#x2717;
+                            </button>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                   </table>
                 </div>
-              )}
-              {data1.length === 0 && (
-                <div id="complaints1">No  complaints so far!!</div>
-              )}
-            </div>
-            <div
-              className={
-                toggleState === 2 ? "content  active-content" : "content"
-              }
-            >
-            <div>
-            {data2.map(item => (
-        <li>{item.issue}</li>
-      ))}
-            </div>
+              </div>
+              <div
+                className={
+                  toggleState === 3 ? "content  active-content" : "content"
+                }
+              >
+                <div>
+                  <table id="tabtab">
+                    {/* {item.name} {item.address} */}
+                    <tr>
+                      <th class="trackh">TicketID</th>
+                      <th class="trackh">Municipality</th>
+                      <th class="trackh">Complainee</th>
+                      <th class="trackh">Phone</th>
+                      <th class="trackh">Resolution</th>
+                    </tr>
+                    {data3.map((item) => (
+                      <tr>
+                        <td className="trackd">{item.ticketId}</td>
+                        <td className="trackd">{item.issue}</td>
+                        <td className="trackd">{item.industry_name}</td>
+                        <td className="trackd">{item.status}</td>
+                        <td className="trackd">
+                          <span>
+                            <button id="verify" className="accbutt">
+                              &#x2713;
+                            </button>
+                          </span>
+                          <span>
+                            <button id="reject" className="accbutt">
+                              &#x2717;
+                            </button>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    
-  
+
       {data2.length === 0 && <div id="complaints1">No complaints so far!!</div>}
     </>
   );
