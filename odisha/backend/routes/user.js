@@ -41,19 +41,17 @@ require("dotenv").config();
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
 
 // Storage
-let file_name
 const Storage = multer.diskStorage({
   destination: 'uploads',
   filename: (req, file, cb) => {
-    file_name=Date.now()
-    cb(null, Date.now()+file.originalname)
+    cb(null, file.originalname)
   }
 });
 
 const upload = multer({
   storage: Storage,
-}).single('testImage')
-//*********we need to specify testImage in the field of image in postman************
+}).single('myFile')
+//****we need to specify testImage in the field of image in postman*****
 
 router.post("/complain", (req, res) => {
   console.log(req.body.pincode);
@@ -111,6 +109,7 @@ router.post("/register", async (req, res) => {
   }
 
 });
+
 router.post("/signIn", async (req, res) => {
   const municipal_corp = await municipal.findOne({ name: req.body.name });
 
@@ -126,6 +125,7 @@ router.post("/signIn", async (req, res) => {
     }
   }
 });
+
 router.post("/registerCommittee",async(req,res)=>{
   const check = await committee.findOne({ email: req.body.email });
 
@@ -141,6 +141,7 @@ router.post("/registerCommittee",async(req,res)=>{
     res.status(200).json({success:false,message:"Governing committee already registered"});
   }
 })
+
 router.post("/signInCommittee",async(req,res)=>{
   const gov_committee = await committee.findOne({ email: req.body.email });
   
@@ -156,7 +157,6 @@ router.post("/signInCommittee",async(req,res)=>{
     }
   }
 })
-
 
 function send_SMS(num, ticketId) {
   let mes = `Dear user,  Your request with ticket id : ${ticketId} has been generated succesfully and will be resolved within 3 working days`;
@@ -186,14 +186,14 @@ router.post("/ticketStatus", async (req, res) => {
 
 router.post("/resolve", async (req, res) => {
   let ticketId = req.body.ticketId
-  let d = await user.findOneAndUpdate({ ticketId: ticketId }, { gov_com: true })
+  let d = await user.findOneAndUpdate({ ticketId: ticketId }, { gov_com: true ,status:"pending"})
   if (!d) {
     res.status(200).json({ success: false, data: null, message: "Ticket is invalid" })
   }
   else {
     res.status(200).json({ success: true, data: d, message: "Ticket is pushed to higher authorities" })
   }
-})
+});
 
 router.post('/complainIndustry', async (req, res) => {
 
@@ -204,12 +204,11 @@ router.post('/complainIndustry', async (req, res) => {
     else {
       const complain = industry.create({
         issue: req.body.issue,
-        name: req.body.name,
+        industry_name: req.body.industry_name,
         locality: req.body.locality,
         pincode: parseInt(req.body.pincode),
-        testImage: {
-          data: req.file.filename,
-          contentType: 'image/png'
+        myFile:{
+          data: req.body.image.data
         }
       })
 
@@ -225,11 +224,12 @@ router.post('/complainIndustry', async (req, res) => {
 router.post("/municipality",async(req,res)=>{
   res.status(200).json({success:true,data:arr,message:"data sent"})
 })
+
 router.post("/fetchComplaints",async(req,res)=>{
   
   let municipal=req.body.d
 
-  let d=await user.find({municipality:municipal})
+  let d=await user.find({municipality:municipal,status:"pending"})
   if(d){
     res.status(200).json({success:true,data:d,message:"complaints fetched"})
   }
@@ -248,4 +248,11 @@ router.post("/fetchGovComplaints",async(req,res)=>{
   }
 })
 
+router.post("/resolveMunicipalComplaints",async(req,res)=>{
+  
+  const a=req.body.ticketId
+
+  await user.findOneAndUpdate({ticketId:a},{status:"resolved"})
+  res.status(200).json({success:true,data:null,message:"status updated"})
+})
 module.exports = router;

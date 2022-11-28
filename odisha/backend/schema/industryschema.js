@@ -5,7 +5,7 @@ const industrySchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    name:{
+    industry_name:{
         type:String,
         required:true
     },
@@ -17,9 +17,8 @@ const industrySchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    testImage:{
-        data:Buffer,
-        contentType: String
+    myFile:{
+        data:String
     }
 })
 

@@ -8,6 +8,7 @@ connectDB();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+app.use('/uploads',express.static('uploads'))
 app.use('/api/',require('./routes/user.js'));
 
 app.get('/',(req,res)=>{
