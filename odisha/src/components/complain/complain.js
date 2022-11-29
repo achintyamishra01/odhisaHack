@@ -90,7 +90,7 @@ const Complain = () => {
               id="name"
               name="name"
               value={name}
-              placeholder="Enter ur name"
+              placeholder="Enter your name / ତୁମର ନାମ ପ୍ରବେଶ କର"
               className="ipfield"
               onChange={handleChange}
             />
@@ -100,7 +100,7 @@ const Complain = () => {
               id="phone"
               name="phone"
               value={phone}
-              placeholder="Enter ur phone"
+              placeholder="Enter your phone /  ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ"
               className="ipfield"
               onChange={handleChange}
             />
@@ -110,7 +110,7 @@ const Complain = () => {
               id="address"
               name="address"
               value={address}
-              placeholder="Enter ur address"
+              placeholder="Enter your address / ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ"
               className="ipfield"
               onChange={handleChange}
             />
@@ -120,7 +120,7 @@ const Complain = () => {
               id="pincode"
               name="pincode"
               value={pincode}
-              placeholder="Enter ur pincode"
+              placeholder="Enter your pincode / ପିଙ୍କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ"
               className="ipfield"
               onChange={handleChange}
             />
@@ -131,12 +131,12 @@ const Complain = () => {
               name="municipality"
               className="ipfield"
               value={municipality}
-              placeholder="Municipality / नगरपालिका"
+              placeholder="Municipal Corportion / ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"
             />
             <br />
             <div id="cbox">
               <span>
-                <label htmlFor="ewastecheckbox">Contains e-Waste</label>
+                <label htmlFor="ewastecheckbox">Contains e-Waste ?</label>
               </span>
               <span>
                 <input

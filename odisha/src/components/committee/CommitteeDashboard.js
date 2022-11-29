@@ -184,7 +184,7 @@ const CommitteelDashboard = () => {
                 id="bon2"
               >
                 <u>
-                  <b>Industry Complaints</b>
+                  <b>Pending Industry Complaints</b>
                 </u>
               </button>
               <button
@@ -193,7 +193,7 @@ const CommitteelDashboard = () => {
                 id="bon2"
               >
                 <u>
-                  <b>Industry Complaints</b>
+                  <b>Verified Industry Complaints</b>
                 </u>
               </button>
             </div>
@@ -308,8 +308,6 @@ const CommitteelDashboard = () => {
           </div>
         </div>
       </div>
-
-
     </>
   );
 };
