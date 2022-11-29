@@ -296,9 +296,8 @@ router.post("/resolveGovComplaints",async(req,res)=>{
   res.status(200).json({success:true,data:null,message:"status updated"})
 })
 
-
 router.post("/fetchPendingIndustryComplaints",async(req,res)=>{
-  let d=await industry.find({status:"pending"})
+  let d=await industry.find({industry_name:req.body.industry_name,status:"pending"});
   if(d){
     res.status(200).json({success:true,data:d,message:"Pending Industry complaints fetched"})
   }
@@ -306,6 +305,7 @@ router.post("/fetchPendingIndustryComplaints",async(req,res)=>{
     res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
   }
 })
+
 router.post("/fetchVerifiedIndustryComplaints",async(req,res)=>{
   let d=await industry.find({status:"verified"})
   if(d){
@@ -315,6 +315,7 @@ router.post("/fetchVerifiedIndustryComplaints",async(req,res)=>{
     res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
   }
 })
+
 router.post("/rejectIndustryCompalints",async(req,res)=>{
   let d=await industry.findOneAndDelete({ticketId:req.body.ticketId})
   if(d){
@@ -324,6 +325,7 @@ router.post("/rejectIndustryCompalints",async(req,res)=>{
     res.status(200).json({success:false,data:d,message:"error"})
   }
 })
+
 router.post("/verifyIndustryCompalints",async(req,res)=>{
   let d=await industry.findOneAndDelete({ticketId:req.body.ticketId})
   if(d){
@@ -333,4 +335,5 @@ router.post("/verifyIndustryCompalints",async(req,res)=>{
     res.status(200).json({success:false,data:d,message:"error"})
   }
 })
+
 module.exports = router; 

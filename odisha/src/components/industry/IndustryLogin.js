@@ -35,6 +35,7 @@ const IndustryLogin = () => {
         const content = await res.json();
         console.log(content);
         if(content.success){
+            localStorage.setItem('industry_name',email);
             navigate("/indDash");
             console.log(content);
         }
