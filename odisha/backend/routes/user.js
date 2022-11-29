@@ -41,17 +41,21 @@ require("dotenv").config();
 // const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
 
 // Storage
-const Storage = multer.diskStorage({
-  destination: 'uploads',
+let file_name;
+const storage = multer.diskStorage({
+  destination: (req,file,cb)=>{
+    cb(null,"./uploads")
+  },
   filename: (req, file, cb) => {
+    file_name=file.originalname
     cb(null, file.originalname)
   }
 });
 
 const upload = multer({
-  storage: Storage,
-}).single('myFile')
-//****we need to specify testImage in the field of image in postman*****
+  storage: storage,
+})
+
 
 router.post("/complain", (req, res) => {
   console.log(req.body.pincode);
@@ -195,30 +199,22 @@ router.post("/resolve", async (req, res) => {
   }
 });
 
-router.post('/complainIndustry', async (req, res) => {
+router.post('/complainIndustry',upload.single('image'), async (req, res) => {
 
-  upload(req, res, (err) => {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      const complain = industry.create({
+  
+    
+      const complain = await industry.create({
         ticketId:Date.now(),
         issue: req.body.issue,
         industry_name: req.body.industry_name,
         locality: req.body.locality,
         pincode: parseInt(req.body.pincode),
-        myFile:{
-          data: req.body.image.data
-        }
+        myFile:file_name
       })
 
-        // check for failure or success
-        .then(() => 
-        res.status(200).json({ success: true, message: "complain registered for industry" })
-        ).catch(err=>console.log(err))
-    }
-  });
+     
+  res.status(200).json({success:true,data:null,message:"Industry Complaint registered sucessfully"})
+
 
 });
 
@@ -281,6 +277,24 @@ router.post("/fetchVerifiedIndustryComplaints",async(req,res)=>{
   }
   else{
     res.status(200).json({success:true,data:null,message:"Woo! no complaints there"})
+  }
+})
+router.post("/rejectIndustryCompalints",async(req,res)=>{
+  let d=await industry.findOneAndDelete({ticketId:req.body.ticketId})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Industry complaint rejected"})
+  }
+  else{
+    res.status(200).json({success:false,data:d,message:"error"})
+  }
+})
+router.post("/verifyIndustryCompalints",async(req,res)=>{
+  let d=await industry.findOneAndDelete({ticketId:req.body.ticketId})
+  if(d){
+    res.status(200).json({success:true,data:d,message:"Industry complaint verified"})
+  }
+  else{
+    res.status(200).json({success:false,data:d,message:"error"})
   }
 })
 module.exports = router; 

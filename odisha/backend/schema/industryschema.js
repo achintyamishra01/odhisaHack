@@ -25,7 +25,7 @@ const industrySchema = new mongoose.Schema({
         default:"pending"
     },
     myFile:{
-        data:String
+        type:String
     }
 })
 

@@ -79,10 +79,12 @@ const CommitteelDashboard = () => {
       alert("Something went wrong");
     }
   }
-  async function resolveGovComplaints(ticketId) {
-    console.log(ticketId);
-    let tId = { ticketId };
-    const res = await fetch("/api/resolveGovComplaints", {
+
+  async function rejectIndustryComplaints(ticketId){
+    let tId={ticketId}
+    
+   
+    const res = await fetch("/api/rejectIndustryCompalints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -97,8 +99,30 @@ const CommitteelDashboard = () => {
     } else {
       alert("Something went wrong");
     }
-  }
 
+
+  }
+  async function verifyIndustryComplaints(ticketId){
+    let tId={ticketId}
+    const res = await fetch("/api/verifyIndustryCompalints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tId),
+    });
+    const d = await res.json();
+    console.log(d);
+    if (d.success) {
+      console.log("reloading");
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+    }
+
+
+
+  }
   const logout = async () => {
     localStorage.removeItem("committee");
     window.location.reload();
@@ -221,12 +245,12 @@ const CommitteelDashboard = () => {
                         <td className="trackd">{item.status}</td>
                         <td className="trackd">
                           <span>
-                            <button id="verify" className="accbutt">
-                              &#x2713;
+                            <button id="verify" className="accbutt" onClick={() => verifyIndustryComplaints(item.ticketId)}>
+                              &#x2713; 
                             </button>
                           </span>
                           <span>
-                            <button id="reject" className="accbutt">
+                            <button id="reject" className="accbutt" onClick={() => rejectIndustryComplaints(item.ticketId)}>
                               &#x2717;
                             </button>
                           </span>
@@ -267,7 +291,7 @@ const CommitteelDashboard = () => {
                             </button>
                           </span>
                           <span>
-                            <button id="reject" className="accbutt">
+                            <button id="reject" className="accbutt" onClick={()=>{}}>
                               &#x2717;
                             </button>
                           </span>

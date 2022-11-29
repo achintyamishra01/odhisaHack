@@ -11,4 +11,4 @@ const committeeSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("committee",committeeSchema);
+module.exports = mongoose.model("committee",committeeSchema); 

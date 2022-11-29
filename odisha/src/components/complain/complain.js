@@ -71,6 +71,11 @@ const Complain = () => {
     });
     const c = await res.json();
     console.log(c);
+    setaddress("")
+    setmunicipality("")
+    setphone("")
+    setpincode("")
+    setname("")
   };
 
   return (
