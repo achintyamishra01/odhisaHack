@@ -88,7 +88,7 @@ const Track = () => {
               type="text"
               name="complaint_Ticket"
               id="complaint_Ticket"
-              placeholder="Enter ticket id u want to track"
+              placeholder="Enter ticket id u want to track / ଆପଣ ଟ୍ରାକ୍ କରିବାକୁ ଚାହୁଁଥିବା ଟିକେଟ୍ id ପ୍ରବେଶ କରନ୍ତୁ "
               onChange={handleChange}
             />
             <button onClick={handleSubmit} id="trs">

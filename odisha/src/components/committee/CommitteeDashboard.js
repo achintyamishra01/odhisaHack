@@ -160,7 +160,7 @@ const CommitteelDashboard = () => {
                 id="bon2"
               >
                 <u>
-                  <b>Industry Complaints</b>
+                  <b>Pending Industry Complaints</b>
                 </u>
               </button>
               <button
@@ -169,7 +169,7 @@ const CommitteelDashboard = () => {
                 id="bon2"
               >
                 <u>
-                  <b>Industry Complaints</b>
+                  <b>Verified Industry Complaints</b>
                 </u>
               </button>
             </div>
@@ -203,38 +203,40 @@ const CommitteelDashboard = () => {
                   toggleState === 2 ? "content  active-content" : "content"
                 }
               >
-                {data2.length!==0 && <div>
-                  <table id="tabtab">
-                    {/* {item.name} {item.address} */}
-                    <tr>
-                      <th className="trackh">TicketID</th>
-                      <th className="trackh">Municipality</th>
-                      <th className="trackh">Complainee</th>
-                      <th className="trackh">Phone</th>
-                      <th className="trackh">Resolution</th>
-                    </tr>
-                    {data2.map((item) => (
+                {data2.length !== 0 && (
+                  <div>
+                    <table id="tabtab">
+                      {/* {item.name} {item.address} */}
                       <tr>
-                        <td className="trackd">{item.ticketId}</td>
-                        <td className="trackd">{item.issue}</td>
-                        <td className="trackd">{item.industry_name}</td>
-                        <td className="trackd">{item.status}</td>
-                        <td className="trackd">
-                          <span>
-                            <button id="verify" className="accbutt">
-                              &#x2713;
-                            </button>
-                          </span>
-                          <span>
-                            <button id="reject" className="accbutt">
-                              &#x2717;
-                            </button>
-                          </span>
-                        </td>
+                        <th className="trackh">TicketID</th>
+                        <th className="trackh">Municipality</th>
+                        <th className="trackh">Complainee</th>
+                        <th className="trackh">Phone</th>
+                        <th className="trackh">Resolution</th>
                       </tr>
-                    ))}
-                  </table>
-                </div>}
+                      {data2.map((item) => (
+                        <tr>
+                          <td className="trackd">{item.ticketId}</td>
+                          <td className="trackd">{item.issue}</td>
+                          <td className="trackd">{item.industry_name}</td>
+                          <td className="trackd">{item.status}</td>
+                          <td className="trackd">
+                            <span>
+                              <button id="verify" className="accbutt">
+                                &#x2713;
+                              </button>
+                            </span>
+                            <span>
+                              <button id="reject" className="accbutt">
+                                &#x2717;
+                              </button>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+                )}
                 {data2.length === 0 && (
                   <div id="complaints1">No complaints so far!!</div>
                 )}
@@ -244,38 +246,40 @@ const CommitteelDashboard = () => {
                   toggleState === 3 ? "content  active-content" : "content"
                 }
               >
-               { data3.length!==0 && <div>
-                  <table id="tabtab">
-                    {/* {item.name} {item.address} */}
-                    <tr>
-                      <th className="trackh">TicketID</th>
-                      <th className="trackh">Municipality</th>
-                      <th className="trackh">Complainee</th>
-                      <th className="trackh">Phone</th>
-                      <th className="trackh">Resolution</th>
-                    </tr> 
-                    {data3.map((item) => (
+                {data3.length !== 0 && (
+                  <div>
+                    <table id="tabtab">
+                      {/* {item.name} {item.address} */}
                       <tr>
-                        <td className="trackd">{item.ticketId}</td>
-                        <td className="trackd">{item.issue}</td>
-                        <td className="trackd">{item.industry_name}</td>
-                        <td className="trackd">{item.status}</td>
-                        <td className="trackd">
-                          <span>
-                            <button id="verify" className="accbutt">
-                              &#x2713;
-                            </button>
-                          </span>
-                          <span>
-                            <button id="reject" className="accbutt">
-                              &#x2717;
-                            </button>
-                          </span>
-                        </td>
+                        <th className="trackh">TicketID</th>
+                        <th className="trackh">Municipality</th>
+                        <th className="trackh">Complainee</th>
+                        <th className="trackh">Phone</th>
+                        <th className="trackh">Resolution</th>
                       </tr>
-                    ))}
-                  </table>
-                </div>}
+                      {data3.map((item) => (
+                        <tr>
+                          <td className="trackd">{item.ticketId}</td>
+                          <td className="trackd">{item.issue}</td>
+                          <td className="trackd">{item.industry_name}</td>
+                          <td className="trackd">{item.status}</td>
+                          <td className="trackd">
+                            <span>
+                              <button id="verify" className="accbutt">
+                                &#x2713;
+                              </button>
+                            </span>
+                            <span>
+                              <button id="reject" className="accbutt">
+                                &#x2717;
+                              </button>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+                )}
                 {data3.length === 0 && (
                   <div id="complaints1">No complaints so far!!</div>
                 )}
@@ -284,8 +288,6 @@ const CommitteelDashboard = () => {
           </div>
         </div>
       </div>
-
-
     </>
   );
 };
