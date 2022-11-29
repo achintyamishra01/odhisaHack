@@ -9,7 +9,7 @@ const IndustryLogin = () => {
     const [password,setPassword] = useState("");
 
     const handleChange = (e)=>{
-        if(e.target.name === "name"){
+        if(e.target.name === "email"){
             setEmail(e.target.value);
         }
         else if(e.target.name === "password"){
@@ -20,8 +20,18 @@ const IndustryLogin = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
 
-        console.log(email);
-        console.log(password);
+        const data = {email, password};
+
+        const res = await fetch('/api/industrySignIn',{
+            method:'POST',
+            headers:{
+                "content-type":"application/json",
+            },
+            body: JSON.stringify(data)  
+        });
+
+        const content = await res.json();
+        console.log(content);
     }
 
     return (

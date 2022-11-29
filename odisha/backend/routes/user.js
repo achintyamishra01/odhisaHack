@@ -7,6 +7,7 @@ const user = require("../schema/userschema");
 const municipal = require("../schema/municipalschema");
 const industry = require('../schema/industryschema');
 const committee=require("../schema/committeeLogin")
+const industryLogin = require('../schema/industryLoginSchema');
 
 const arr = [
   { 750017: "Bhubaneshwar Municipal Corporation" },
@@ -142,6 +143,41 @@ router.post("/registerCommittee",async(req,res)=>{
   }
 })
 
+// industryRegister used to register industry using postman
+router.post('/industryRegister',async(req,res)=>{
+  const check = await industryLogin.findOne({ username: req.body.username });
+
+  if (check == null) {
+    const industry = industryLogin.create({
+      username: req.body.username,
+      password: req.body.password
+    });
+
+    res.status(200).json({ success: true, message: "Industry Created" });
+
+  }else{
+    res.status(200).json({success:false,message:"Industry already exists"});
+  }
+}); 
+
+// industrySignIn used to signin industry
+router.post('/industrySignIn',async(req,res)=>{
+  const industry = await industryLogin.findOne({ username: req.body.email });
+  console.log(req.body);
+
+  if(industry==null){
+    res.status(200).json({success:false,message:"Invalid industry username"});
+  }
+  else {
+    if (industry.password == req.body.password) {
+      res.status(200).json({ success: true, message: "Successfully logged In" });
+    }
+    else{
+      res.status(200).json({success:false,message:"Incorrect Password"});
+    }
+  }
+});
+
 router.post("/signInCommittee",async(req,res)=>{
   const gov_committee = await committee.findOne({ email: req.body.email });
   
@@ -196,7 +232,6 @@ router.post("/resolve", async (req, res) => {
 });
 
 router.post('/complainIndustry', async (req, res) => {
-
   upload(req, res, (err) => {
     if (err) {
       console.log(err);
@@ -212,11 +247,10 @@ router.post('/complainIndustry', async (req, res) => {
           data: req.body.image.data
         }
       })
-
-        // check for failure or success
-        .then(() => 
-        res.status(200).json({ success: true, message: "complain registered for industry" })
-        ).catch(err=>console.log(err))
+      // check for failure or success
+      .then(() => 
+      res.status(200).json({ success: true, message: "complain registered for industry" })
+      ).catch(err=>console.log(err))
     }
   });
 
