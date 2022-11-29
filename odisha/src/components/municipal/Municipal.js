@@ -15,8 +15,8 @@ const Municipal = () => {
     }
     if (e.target.name === "password") {
       setpassword(e.target.value);
-    }
-  };
+    } 
+  }; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +38,10 @@ const Municipal = () => {
     }
     else{
         alert(c.message)
+        
     }
+    setname("")
+    setpassword("")
   };
 
   return (

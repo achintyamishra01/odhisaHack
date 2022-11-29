@@ -8,9 +8,7 @@ function Industry() {
   const [pincode,setPincode] = useState("");
   const [image,setImage] = useState({});
   
-  const imageUpload = (event)=>{
-    setImage({data:event.target.files[0].name});
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +44,7 @@ function Industry() {
 
   return (
     <div>
-      <form>
+      <form method='POST' action='/api/complainIndustry' encType='multipart/form-data'>
          <textarea
               type="text"
               id="issue"
@@ -91,12 +89,14 @@ function Industry() {
             <input
               type="file"
               id="testImage"
-              name="myFile"
+           
+              name='image'
               placeholder="Enter industry pincode area:"
               className="ipfield"
-              onChange={imageUpload}
+              
             />
-            <button onClick={handleSubmit}>Submit Complain</button>
+            
+            <input type="submit" />
       </form>
     </div>
   )
