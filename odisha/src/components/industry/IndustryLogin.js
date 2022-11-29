@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const IndustryLogin = () => {
 
+    const navigate = useNavigate();
+
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -32,6 +34,13 @@ const IndustryLogin = () => {
 
         const content = await res.json();
         console.log(content);
+        if(content.success){
+            navigate("/indDash");
+            console.log(content);
+        }
+        else{
+            alert("Invalid credentials");
+        }
     }
 
     return (

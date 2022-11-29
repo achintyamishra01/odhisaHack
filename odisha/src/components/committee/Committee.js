@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./committee.css";
 import { useNavigate } from "react-router-dom";
+
 const Committee = () => {
   const navigate=useNavigate();
   const [email, setemail] = useState("");
