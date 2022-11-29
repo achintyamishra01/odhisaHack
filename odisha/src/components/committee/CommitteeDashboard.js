@@ -80,10 +80,9 @@ const CommitteelDashboard = () => {
     }
   }
 
-  async function rejectIndustryComplaints(ticketId){
-    let tId={ticketId}
-    
-   
+  async function rejectIndustryComplaints(ticketId) {
+    let tId = { ticketId };
+
     const res = await fetch("/api/rejectIndustryCompalints", {
       method: "POST",
       headers: {
@@ -99,11 +98,9 @@ const CommitteelDashboard = () => {
     } else {
       alert("Something went wrong");
     }
-
-
   }
-  async function verifyIndustryComplaints(ticketId){
-    let tId={ticketId}
+  async function verifyIndustryComplaints(ticketId) {
+    let tId = { ticketId };
     const res = await fetch("/api/verifyIndustryCompalints", {
       method: "POST",
       headers: {
@@ -119,9 +116,6 @@ const CommitteelDashboard = () => {
     } else {
       alert("Something went wrong");
     }
-
-
-
   }
   const logout = async () => {
     localStorage.removeItem("committee");
@@ -158,16 +152,15 @@ const CommitteelDashboard = () => {
           <a href="/">
             <img src={require("../../Assets/logo.png")} alt="" />
           </a>
-          <div>
+          <div id="uparlog">
             <h2>Governing Committee Dashboard</h2>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout} id="clout">
+              Logout
+            </button>
           </div>
         </div>
         <div id="notelse">
           <div className="container">
-            {/* <h2>
-          <u>Industry Complaint :</u>
-        </h2> */}
             <div className="bloc-tabs">
               <button
                 className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -227,38 +220,52 @@ const CommitteelDashboard = () => {
                   toggleState === 2 ? "content  active-content" : "content"
                 }
               >
-                {data2.length!==0 && <div>
-                  <table id="tabtab">
-                    {/* {item.name} {item.address} */}
-                    <tr>
-                      <th className="trackh">TicketID</th>
-                      <th className="trackh">Municipality</th>
-                      <th className="trackh">Complainee</th>
-                      <th className="trackh">Phone</th>
-                      <th className="trackh">Resolution</th>
-                    </tr>
-                    {data2.map((item) => (
+                {data2.length !== 0 && (
+                  <div>
+                    <table id="tabtab">
+                      {/* {item.name} {item.address} */}
                       <tr>
-                        <td className="trackd">{item.ticketId}</td>
-                        <td className="trackd">{item.issue}</td>
-                        <td className="trackd">{item.industry_name}</td>
-                        <td className="trackd">{item.status}</td>
-                        <td className="trackd">
-                          <span>
-                            <button id="verify" className="accbutt" onClick={() => verifyIndustryComplaints(item.ticketId)}>
-                              &#x2713; 
-                            </button>
-                          </span>
-                          <span>
-                            <button id="reject" className="accbutt" onClick={() => rejectIndustryComplaints(item.ticketId)}>
-                              &#x2717;
-                            </button>
-                          </span>
-                        </td>
+                        <th className="trackh">TicketID</th>
+                        <th className="trackh">Municipality</th>
+                        <th className="trackh">Complainee</th>
+                        <th className="trackh">Phone</th>
+                        <th className="trackh">Resolution</th>
                       </tr>
-                    ))}
-                  </table>
-                </div>}
+                      {data2.map((item) => (
+                        <tr>
+                          <td className="trackd">{item.ticketId}</td>
+                          <td className="trackd">{item.issue}</td>
+                          <td className="trackd">{item.industry_name}</td>
+                          <td className="trackd">{item.status}</td>
+                          <td className="trackd">
+                            <span>
+                              <button
+                                id="verify"
+                                className="accbutt"
+                                onClick={() =>
+                                  verifyIndustryComplaints(item.ticketId)
+                                }
+                              >
+                                &#x2713;
+                              </button>
+                            </span>
+                            <span>
+                              <button
+                                id="reject"
+                                className="accbutt"
+                                onClick={() =>
+                                  rejectIndustryComplaints(item.ticketId)
+                                }
+                              >
+                                &#x2717;
+                              </button>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+                )}
                 {data2.length === 0 && (
                   <div id="complaints1">No complaints so far!!</div>
                 )}
@@ -268,38 +275,44 @@ const CommitteelDashboard = () => {
                   toggleState === 3 ? "content  active-content" : "content"
                 }
               >
-               { data3.length!==0 && <div>
-                  <table id="tabtab">
-                    {/* {item.name} {item.address} */}
-                    <tr>
-                      <th className="trackh">TicketID</th>
-                      <th className="trackh">Municipality</th>
-                      <th className="trackh">Complainee</th>
-                      <th className="trackh">Phone</th>
-                      <th className="trackh">Resolution</th>
-                    </tr> 
-                    {data3.map((item) => (
+                {data3.length !== 0 && (
+                  <div>
+                    <table id="tabtab">
+                      {/* {item.name} {item.address} */}
                       <tr>
-                        <td className="trackd">{item.ticketId}</td>
-                        <td className="trackd">{item.issue}</td>
-                        <td className="trackd">{item.industry_name}</td>
-                        <td className="trackd">{item.status}</td>
-                        <td className="trackd">
-                          <span>
-                            <button id="verify" className="accbutt">
-                              &#x2713;
-                            </button>
-                          </span>
-                          <span>
-                            <button id="reject" className="accbutt" onClick={()=>{}}>
-                              &#x2717;
-                            </button>
-                          </span>
-                        </td>
+                        <th className="trackh">TicketID</th>
+                        <th className="trackh">Municipality</th>
+                        <th className="trackh">Complainee</th>
+                        <th className="trackh">Phone</th>
+                        <th className="trackh">Resolution</th>
                       </tr>
-                    ))}
-                  </table>
-                </div>}
+                      {data3.map((item) => (
+                        <tr>
+                          <td className="trackd">{item.ticketId}</td>
+                          <td className="trackd">{item.issue}</td>
+                          <td className="trackd">{item.industry_name}</td>
+                          <td className="trackd">{item.status}</td>
+                          <td className="trackd">
+                            <span>
+                              <button id="verify" className="accbutt">
+                                &#x2713;
+                              </button>
+                            </span>
+                            <span>
+                              <button
+                                id="reject"
+                                className="accbutt"
+                                onClick={() => {}}
+                              >
+                                &#x2717;
+                              </button>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+                )}
                 {data3.length === 0 && (
                   <div id="complaints1">No complaints so far!!</div>
                 )}

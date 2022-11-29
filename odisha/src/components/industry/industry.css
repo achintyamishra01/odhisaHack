@@ -48,3 +48,39 @@
   transform: scale(1.07);
   shadow: 1px 0.5px 0.5px 1px black;
 }
+#form-cont {
+  background-color: #ebf9db;
+  height: 100vh;
+  width: 100%;
+  padding-top: 2rem;
+}
+#ind-comp-form {
+  border: 2px solid black;
+  width: 22vw;
+  height: 75vh;
+  border-radius: 7px;
+  margin: auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+.ipfield {
+  width: 100%;
+  border-radius: 5px;
+}
+#icbut {
+  width: 50%;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: medium;
+  background-color: black;
+  padding: 0.5rem 1.5rem;
+  border-radius: 7px;
+  margin: 0 auto;
+}
+#ind-comp-form > h2 {
+  margin: 0 auto;
+}

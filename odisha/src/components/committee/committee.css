@@ -124,3 +124,20 @@ div > a > img {
 .active-content {
   display: block;
 }
+#uparlog {
+  display: flex;
+  justify-content: space-between;
+}
+#clout {
+  width: 5rem;
+  height: 2rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background-color: #800020;
+  color: white;
+  cursor: pointer;
+}
+#clout:hover {
+  transform: scale(1.07);
+  transition: 4ms;
+}
