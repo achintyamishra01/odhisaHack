@@ -54,7 +54,7 @@ const Complain = ({ changeLanguage, language }) => {
         autoComplete(e.target.value);
       }
     }
-    if (e.target.name == "complain") {
+    if (e.target.name === "complain") {
       setComplain(e.target.value);
     }
   };
@@ -225,9 +225,14 @@ const Complain = ({ changeLanguage, language }) => {
                   </option>
                 </select>
 
-                <a href="http://localhost:5000/" target="_blank" id="ai">
+                <a
+                  href="http://localhost:5000/"
+                  target="_blank"
+                  rel="noreferrer"
+                  id="ai"
+                >
                   {language === "English"
-                    ? "Check If your waste is e-Waste"
+                    ? " Check If your waste is e-Waste"
                     : "ଆପଣଙ୍କର ବର୍ଜ୍ୟବସ୍ତୁ ଇ-ଆବର୍ଜନା କି ନାହିଁ ଯାଞ୍ଚ କରନ୍ତୁ "}
                 </a>
                 <div id="cbox">

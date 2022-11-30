@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./track.css";
 import Navbar from "../navbar/Navbar";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Track = ({ changeLanguage, language }) => {
   var ticket, status, address, name, pin, complain;
@@ -27,13 +27,13 @@ const Track = ({ changeLanguage, language }) => {
     });
 
     const c = await res.json();
-    if(c.success){
+    if (c.success) {
       ticket = c.data.ticketId;
       status = c.data.status;
       name = c.data.name;
       address = c.data.address;
       pin = c.data.pincode;
-      complain = c.data.complain
+      complain = c.data.complain;
       let tab = document.getElementById("tab");
       console.log(tab);
       tab.innerHTML = `<tr>
@@ -54,19 +54,7 @@ const Track = ({ changeLanguage, language }) => {
       <td class="trackd">${complain}</td>
       <td class="trackd">${status}</td>
     </tr>`;
-    toast.success('Tracked Your Ticket Id', {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-    }
-    else{
-      toast.error('Enter valid ticket id ', {
+      toast.success("Tracked Your Ticket Id", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -75,7 +63,18 @@ const Track = ({ changeLanguage, language }) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
+    } else {
+      toast.error("Enter valid ticket id ", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -109,54 +108,54 @@ const Track = ({ changeLanguage, language }) => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       }
     }
   };
 
   return (
     <>
-    <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
-    />
-    <div>
-      <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
-      <div id="badadibba">
-        <div className="form-container">
-          <form className="Form">
-            <input
-              type="text"
-              name="complaint_Ticket"
-              id="complaint_Ticket"
-              placeholder={
-                language === "English"
-                ? "Enter ticket id u want to track"
-                  : "ଆପଣ ଟ୍ରାକ୍ କରିବାକୁ ଚାହୁଁଥିବା ଟିକେଟ୍ id ପ୍ରବେଶ କରନ୍ତୁ "
-              }
-              onChange={handleChange}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <div>
+        <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
+        <div id="badadibba">
+          <div className="form-container">
+            <form className="Form">
+              <input
+                type="text"
+                name="complaint_Ticket"
+                id="complaint_Ticket"
+                placeholder={
+                  language === "English"
+                    ? "Enter the Ticket-ID that you want to track"
+                    : "ଆପଣ ଟ୍ରାକ୍ କରିବାକୁ ଚାହୁଁଥିବା ଟିକେଟ୍-ଆଇଡ୍ ପ୍ରବେଶ କରନ୍ତୁ"
+                }
+                onChange={handleChange}
               />
-            <button onClick={handleSubmit} id="trs">
-              {language === "English" ? "Track" : "ଟ୍ରାକ୍ କରନ୍ତୁ"}
-            </button>
-          </form>
+              <button onClick={handleSubmit} id="trs">
+                {language === "English" ? "Track" : "ଟ୍ରାକ୍ କରନ୍ତୁ"}
+              </button>
+            </form>
+          </div>
+          <table id="tab" className="tab"></table>
+          <button onClick={handleResolve} id="upperauth">
+            {language === "English"
+              ? "Push to higher authorities"
+              : "ଉଚ୍ଚ କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ ଠେଲିଦିଅ"}
+          </button>
         </div>
-        <table id="tab" className="tab"></table>
-        <button onClick={handleResolve} id="upperauth">
-          {language === "English"
-            ? "Push to higher authorities"
-            : "ଉଚ୍ଚ କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ ଠେଲିଦିଅ"}
-        </button>
       </div>
-    </div>
     </>
   );
 };
