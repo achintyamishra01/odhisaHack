@@ -3,13 +3,12 @@ import Navbar from "../navbar/Navbar";
 import "./committee.css";
 import { useNavigate } from "react-router-dom";
 
-const Committee = () => {
-  const navigate=useNavigate();
+const Committee = ({ changeLanguage, language }) => {
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const handleChange = (e) => {
-
     if (e.target.name === "email") {
       setemail(e.target.value);
     }
@@ -32,24 +31,27 @@ const Committee = () => {
     });
     const c = await res.json();
     console.log(c);
-    if(c.success){
-      localStorage.setItem("committee",email)
-      navigate("/committeeDashboard")
-    }
-    else{
-      alert("invalid credentials")
+    if (c.success) {
+      localStorage.setItem("committee", email);
+      navigate("/committeeDashboard");
+    } else {
+      alert("invalid credentials");
     }
   };
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
         <div className="complainForm">
-          <form action="" method="POST" className="Form" id="compfor" >
-            <h2>Committee Login</h2>
+          <form action="" method="POST" className="Form" id="compfor">
+            <h2>
+              {language === "odiya" ? "କମିଟି ଲଗଇନ୍ |" : "Committee Login"}
+            </h2>
             {/* <img src={require("../../Assets/form-img.png")} alt="" id="tree" /> */}
-            <label htmlFor="name">Choose Committee</label>
+            <label htmlFor="name">
+              {language === "odiya" ? "କମିଟି ବାଛନ୍ତୁ |" : "Choose Committee"}
+            </label>
             <input
               type="text"
               id="email"
@@ -60,7 +62,9 @@ const Committee = () => {
               onChange={handleChange}
             />
             <br></br>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              {language === "odiya" ? "ପାସୱାର୍ଡ" : "Password"}
+            </label>
             <input
               type="password"
               id="password"
@@ -72,7 +76,7 @@ const Committee = () => {
             />
             <br></br>
             <button onClick={handleSubmit} id="raise">
-              Submit
+              {language === "odiya" ? "ଦାଖଲ କରନ୍ତୁ" : "Submit"}
             </button>
           </form>
         </div>

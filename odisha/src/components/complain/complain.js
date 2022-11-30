@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./complain.css";
 
-const Complain = ({changeLanguage,language}) => {
+const Complain = ({ changeLanguage, language }) => {
   const [name, setname] = useState("");
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
@@ -10,7 +10,6 @@ const Complain = ({changeLanguage,language}) => {
   const [e_waste, sete_waste] = useState(false);
   const [gov_com, setgov_com] = useState(false);
   const [municipality, setmunicipality] = useState("");
-
 
   const autoComplete = async (pin) => {
     const d = await fetch("/api/municipality", {
@@ -72,29 +71,29 @@ const Complain = ({changeLanguage,language}) => {
     });
     const c = await res.json();
     console.log(c);
-    setaddress("")
-    setmunicipality("")
-    setphone("")
-    setpincode("")
-    setname("")
+    setaddress("");
+    setmunicipality("");
+    setphone("");
+    setpincode("");
+    setname("");
   };
 
   return (
     <div>
-      <Navbar></Navbar>
-      <button onClick={changeLanguage}>Change Language to {language==="English"?"odiya":"English"}</button>
+      <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
         <div className="complainForm">
           <form action="" method="POST" className="Form" id="compfor">
-            <h2>{language==="English"?"Service Request":"ସେବା ଅନୁରୋଧ"}</h2>
-            
-            
+            <h2>
+              {language === "English" ? "Service Request" : "ସେବା ଅନୁରୋଧ"}
+            </h2>
+
             <input
               type="text"
               id="name"
               name="name"
               value={name}
-              placeholder={language==="English"?"Name":"ନାମ"}
+              placeholder={language === "English" ? "Name" : "ନାମ"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -104,8 +103,7 @@ const Complain = ({changeLanguage,language}) => {
               id="phone"
               name="phone"
               value={phone}
-              placeholder={language==="English"?"phone":"ଫୋନ୍ |"}
-             
+              placeholder={language === "English" ? "phone" : "ଫୋନ୍ |"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -115,8 +113,7 @@ const Complain = ({changeLanguage,language}) => {
               id="address"
               name="address"
               value={address}
-              placeholder=
-              {language==="English"?"address":" ଠିକଣା"}
+              placeholder={language === "English" ? "address" : " ଠିକଣା"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -126,8 +123,7 @@ const Complain = ({changeLanguage,language}) => {
               id="pincode"
               name="pincode"
               value={pincode}
-              placeholder=
-              {language==="English"?"pincode":"ପିଙ୍କୋଡ୍"}
+              placeholder={language === "English" ? "pincode" : "ପିଙ୍କୋଡ୍"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -138,13 +134,20 @@ const Complain = ({changeLanguage,language}) => {
               name="municipality"
               className="ipfield"
               value={municipality}
-              placeholder={language==="English"?"Municipal Corportion":"ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"}
+              placeholder={
+                language === "English"
+                  ? "Municipal Corportion"
+                  : "ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"
+              }
             />
             <br />
             <div id="cbox">
               <span>
-                <label htmlFor="ewastecheckbox">{language==="English"?"Contains e-Waste ?":"ଇବର୍ଜ୍ୟବସ୍ତୁ"}</label>
-                
+                <label htmlFor="ewastecheckbox">
+                  {language === "English"
+                    ? "Contains e-Waste ?"
+                    : "ଇବର୍ଜ୍ୟବସ୍ତୁ"}
+                </label>
               </span>
               <span>
                 <input
@@ -158,8 +161,7 @@ const Complain = ({changeLanguage,language}) => {
             </div>
             <br></br>
             <button onClick={handleSubmit} id="raise">
-              {language==="English"?"Submit":"ଦାଖଲ କରନ୍ତୁ |"}
-              
+              {language === "English" ? "Submit" : "ଦାଖଲ କରନ୍ତୁ |"}
             </button>
           </form>
         </div>
