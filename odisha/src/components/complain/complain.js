@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import "./complain.css";
 
 const Complain = () => {
+
+  const navigate = useNavigate();
+
   const [name, setname] = useState("");
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
@@ -133,10 +137,15 @@ const Complain = () => {
               value={municipality}
               placeholder="Municipal Corportion / ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"
             />
-            <br />
+              <a href="http://localhost:5000/" target='_blank' id="ai">
+
+                  Check for e-Waste
+              </a>
             <div id="cbox">
+              {/* Added E-waste checking button */}
+              
               <span>
-                <label htmlFor="ewastecheckbox">Contains e-Waste ?</label>
+                <label htmlFor="ewastecheckbox">Contains e-Waste?</label>
               </span>
               <span>
                 <input

@@ -16,11 +16,11 @@ const Navbar = () => {
           </li>
           <li>
             {" "}
-            <Link to="/industry">Industry-Complaint</Link>
+            <Link to="/industry" style={{ pointerEvents: 'none' }}>Industry-Complaint</Link>
           </li>
           <li>
             {" "}
-            <Link to="/industryLogin">Industry</Link>
+            <Link to="/industryLogin" style={{ pointerEvents: 'none' }}>Industry</Link>
           </li>
           <li>
             {" "}
