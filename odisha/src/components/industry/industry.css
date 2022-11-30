@@ -107,3 +107,10 @@
 #raise {
   margin-bottom: 4vh;
 }
+#stark {
+  display: flex;
+  justify-content: space-between;
+}
+#stark > h2 {
+  padding-left: 5rem;
+}

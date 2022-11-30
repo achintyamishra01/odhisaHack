@@ -80,6 +80,7 @@
 .awareness {
   width: 70vw;
   height: fit-content;
+  /* height:94vh; */
   background-color: white;
   margin: 2rem auto;
   padding: 5vh 5vw;

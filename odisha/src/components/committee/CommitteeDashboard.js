@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../complain/complain.css";
 
 const CommitteelDashboard = () => {
-
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
   const [data3, setdata3] = useState([]);
@@ -122,7 +121,7 @@ const CommitteelDashboard = () => {
       alert("Something went wrong");
     }
   }
-  
+
   const logout = async () => {
     localStorage.removeItem("committee");
     window.location.reload();
