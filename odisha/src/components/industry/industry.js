@@ -53,6 +53,7 @@ function Industry({ changeLanguage, language }) {
           <h2>
             {language === "odiya" ? "ଶିଳ୍ପ ଅଭିଯୋଗ" : "Industry Complaint"}
           </h2>
+
           <textarea
             type="text"
             id="issue"

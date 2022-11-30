@@ -48,7 +48,11 @@ const Committee = ({ changeLanguage, language }) => {
             <h2>
               {language === "odiya" ? "କମିଟି ଲଗଇନ୍ |" : "Committee Login"}
             </h2>
-            {/* <img src={require("../../Assets/form-img.png")} alt="" id="tree" /> */}
+            <img
+              src={require("../../Assets/form-img.png")}
+              className="form-img"
+              alt=""
+            />
             <label htmlFor="name">
               {language === "odiya" ? "କମିଟି ବାଛନ୍ତୁ |" : "Choose Committee"}
             </label>
