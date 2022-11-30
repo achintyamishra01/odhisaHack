@@ -12,6 +12,7 @@ const Complain = ({ changeLanguage, language }) => {
   const [e_waste, sete_waste] = useState(false);
   const [gov_com, setgov_com] = useState(false);
   const [municipality, setmunicipality] = useState("");
+  const [complain,setComplain] = useState("");
 
   const autoComplete = async (pin) => {
     const d = await fetch("/api/municipality", {
@@ -53,19 +54,18 @@ const Complain = ({ changeLanguage, language }) => {
         autoComplete(e.target.value);
       }
     }
+    if(e.target.name== "complain"){
+      setComplain(e.target.value);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(pincode);
-    console.log(phone);
-    console.log(municipality);
-    console.log(name);
-    console.log(e_waste);
-    const ele = { name, phone, address, pincode, municipality, e_waste };
+    console.log(complain);
+    const ele = { name, phone, address, pincode, municipality, e_waste ,complain};
 
     if (name.length === 0 || phone.length === 0 || address.length === 0 || pincode.length === 0
-      || municipality.length === 0) {
+      || municipality.length === 0 || complain.length ===0) {
       toast.error('All inputs are required', {
         position: "top-left",
         autoClose: 1000,
@@ -92,6 +92,7 @@ const Complain = ({ changeLanguage, language }) => {
       setphone("");
       setpincode("");
       setname("");
+      setComplain("");
       toast.success('Complain Filed.TicketId sent to your mobile number', {
         position: "top-left",
         autoClose: 4000,
@@ -181,6 +182,43 @@ const Complain = ({ changeLanguage, language }) => {
                 }
               />
               <br />
+
+              {/* Added dropdown for type of complain */}
+
+              <select
+              type="text"
+              id="complain"
+              name="complain"
+              value={complain}
+              placeholder={language === "odiya" ? "ନାମ" : "Name"}
+              className="ipfield"
+              onChange={handleChange}
+            >
+              <option value="">
+                --{language === "odiya" ? "ଚୟନ କରନ୍ତୁ" : "Select Issue"}--
+              </option>
+              <option value="Garbage Pickup">
+                {language === "odiya"
+                  ? "ଆବର୍ଜନା ପିକଅପ୍"
+                  : "Garbage Pickup"}
+              </option>
+              <option value="Drainage">
+                {language === "odiya"
+                  ? "ଜଳ ନିଷ୍କାସନ"
+                  : "Drainage"}
+              </option>
+              <option value="Sewage">
+                {language === "odiya"
+                  ? "ଜଳ ନିଷ୍କାସନ"
+                  : "Sewage"}
+              </option>
+              <option value="Sanitation">
+                {language === "odiya"
+                  ? "ପରିମଳ"
+                  : "Sanitation"}
+              </option>
+            </select>
+
               <a href="http://localhost:5000/" target="_blank" id="ai">
                 {
                   language === "English"

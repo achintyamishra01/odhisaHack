@@ -35,8 +35,11 @@ const UserSchema = new mongoose.Schema({
     status:{
         type:String,
         default:"pending"
+    },
+    complain:{
+        type:String,
+        required:true
     }
-
 });
 
 module.exports = mongoose.model("odisha",UserSchema );

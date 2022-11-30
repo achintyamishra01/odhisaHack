@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Track = ({ changeLanguage, language }) => {
-  var ticket, status, address, name, pin;
+  var ticket, status, address, name, pin, complain;
   const [ticketId, setticketId] = useState("");
   const handleChange = (e) => {
     if (e.target.name === "complaint_Ticket") {
@@ -33,6 +33,7 @@ const Track = ({ changeLanguage, language }) => {
       name = c.data.name;
       address = c.data.address;
       pin = c.data.pincode;
+      complain = c.data.complain
       let tab = document.getElementById("tab");
       console.log(tab);
       tab.innerHTML = `<tr>
@@ -40,6 +41,7 @@ const Track = ({ changeLanguage, language }) => {
       <th class="trackh">Name</th>
       <th class="trackh">Address</th>
       <th class="trackh">Pincode</th>
+      <th class="trackh">Issue</th>
       <th class="trackh">Status</th>
     </tr>
     <tr>
@@ -49,9 +51,10 @@ const Track = ({ changeLanguage, language }) => {
         ${address}
       </td>
       <td class="trackd">${pin}</td>
+      <td class="trackd">${complain}</td>
       <td class="trackd">${status}</td>
     </tr>`;
-    toast.success('Tracking Your Ticket Id', {
+    toast.success('Tracked Your Ticket Id', {
       position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,

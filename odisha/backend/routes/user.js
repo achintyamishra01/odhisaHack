@@ -39,7 +39,7 @@ const arr = [
 
 require("dotenv").config();
 
-const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
+// const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
 
 // Storage
 let file_name;
@@ -58,12 +58,11 @@ const upload = multer({
 });
 
 router.post("/complain", (req, res) => {
-  console.log(req.body.pincode);
   let pincode = parseInt(req.body.pincode);
   let phone = parseInt(req.body.phone);
   let municipality = req.body.municipality;
+  let complain = req.body.complain;
   let ticketId = Date.now();
-  let 
 
   const person = user.create({
     name: req.body.name,
@@ -74,8 +73,10 @@ router.post("/complain", (req, res) => {
     gov_com: req.body.gov_com,
     ticketId: ticketId,
     municipality: municipality,
+    complain: complain
   });
-  send_SMS(req.body.name, phone, ticketId); // UNCOMMENT THIS
+
+  // send_SMS(req.body.name, phone, ticketId); // UNCOMMENT THIS
   res.status(200).json({
     success: true,
     message:
