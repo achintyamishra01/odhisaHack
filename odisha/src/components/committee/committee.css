@@ -144,3 +144,25 @@ div > a > img {
   transform: scale(1.07);
   transition: 4ms;
 }
+.bahar {
+  border: 2px solid red;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  padding: 1rem 2.5%;
+  justify-content: space-between;
+  border-radius: 7px;
+}
+.rdibba {
+  display: flex;
+}
+.ldibba {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.headeritems {
+  font-family: "Inter", sans-serif;
+  /* font-size: medium; */
+  font-weight: 400;
+}

@@ -227,22 +227,33 @@ const CommitteelDashboard = () => {
               >
                 {data2.length !== 0 && (
                   <div>
-                    <table id="tabtab">
-                      {/* {item.name} {item.address} */}
-                      <tr>
-                        <th className="trackh">TicketID</th>
-                        <th className="trackh">Municipality</th>
-                        <th className="trackh">Complainee</th>
-                        <th className="trackh">Phone</th>
-                        <th className="trackh">Resolution</th>
-                      </tr>
-                      {data2.map((item) => (
-                        <tr>
-                          <td className="trackd">{item.ticketId}</td>
-                          <td className="trackd">{item.issue}</td>
-                          <td className="trackd">{item.industry_name}</td>
-                          <td className="trackd">{item.status}</td>
-                          <td className="trackd">
+                    {data2.map((item) => (
+                      <div className="bahar">
+                        <div className="ldibba">
+                          <div>
+                            <span className="headeritems">ID : </span>
+                            {item.ticketId}
+                          </div>
+                          <br />
+                          <div>
+                            <span className="headeritems">Issue : </span>
+                            {item.issue}
+                          </div>
+                          <br />
+                          <div>
+                            <span className="headeritems">Locality : </span>
+                            {item.industry_name}
+                          </div>
+                          <br />
+                          <div>
+                            <span className="headeritems">Pincode : </span>
+                            {item.pincode}
+                          </div>
+                          <br />
+                          <div>
+                            <span className="headeritems">
+                              Verify / Reject :{" "}
+                            </span>
                             <span>
                               <button
                                 id="verify"
@@ -265,10 +276,18 @@ const CommitteelDashboard = () => {
                                 &#x2717;
                               </button>
                             </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </table>
+                          </div>
+                        </div>
+                        <div className="rdibba">
+                          Proof:
+                          <img
+                            src={"http://localhost:4000/uploads/" + item.myFile}
+                            alt=""
+                            className="issue-image"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
                 {data2.length === 0 && (
