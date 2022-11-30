@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./industry.css";
 
-function Industry() {
+function Industry({ changeLanguage, language }) {
   const [issue, setIssue] = useState("");
   const [industry_name, setIndustry_name] = useState("");
   const [locality, setLocality] = useState("");
@@ -42,7 +42,7 @@ function Industry() {
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="form-cont">
         <form
           method="POST"
@@ -50,13 +50,19 @@ function Industry() {
           encType="multipart/form-data"
           id="ind-comp-form"
         >
-          <h2>Industry Complaint</h2>
+          <h2>
+            {language === "odiya" ? "ଶିଳ୍ପ ଅଭିଯୋଗ" : "Industry Complaint"}
+          </h2>
           <textarea
             type="text"
             id="issue"
             name="issue"
             value={issue}
-            placeholder="Enter ur address"
+            placeholder={
+              language === "odiya"
+                ? "ତୁମର ସମସ୍ୟା ବର୍ଣ୍ଣନା କର"
+                : "Describe your issue"
+            }
             className="ipfield"
             onChange={handleChange}
           />
@@ -65,7 +71,7 @@ function Industry() {
             id="industry_name"
             name="industry_name"
             value={industry_name}
-            placeholder="Enter your industry name"
+            placeholder={language === "odiya" ? "ଶିଳ୍ପ ନାମ" : "Industry name"}
             className="ipfield"
             onChange={handleChange}
           />
@@ -74,7 +80,9 @@ function Industry() {
             id="locality"
             name="locality"
             value={locality}
-            placeholder="Enter your industry locality"
+            placeholder={
+              language === "odiya" ? "ଶିଳ୍ପ ସ୍ଥାନ" : "Industry locality"
+            }
             className="ipfield"
             onChange={handleChange}
           />
@@ -83,18 +91,20 @@ function Industry() {
             id="pincode"
             name="pincode"
             value={pincode}
-            placeholder="Enter industry pincode area:"
+            placeholder={
+              language === "odiya" ? "କ୍ଷେତ୍ର ପିଙ୍କୋଡ୍" : "Area Pincode"
+            }
             className="ipfield"
             onChange={handleChange}
           />
           <div id="fup">
-            <label htmlFor="image">Attach a proof : </label>
-            <input
-              type="file"
-              id="testImage"
-              name="image"
-              placeholder="Enter industry pincode area:"
-            />
+            <label htmlFor="image">
+              {language === "odiya"
+                ? "ଏକ ପ୍ରମାଣ ସଂଲଗ୍ନ କରନ୍ତୁ"
+                : "Attach a proof"}{" "}
+              :{" "}
+            </label>
+            <input type="file" id="testImage" name="image" />
           </div>
           <input type="submit" id="icbut" />
         </form>

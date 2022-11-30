@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../complain/complain.css";
 
-const MunicipalDashboard = () => {
+const MunicipalDashboard = ({changeLanguage,language}) => {
   const [data1, setdata1] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {

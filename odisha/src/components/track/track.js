@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./track.css";
 import Navbar from "../navbar/Navbar";
 
-const Track = () => {
+const Track = ({ changeLanguage, language }) => {
   var ticket, status, address, name, pin;
   const [ticketId, setticketId] = useState("");
   const handleChange = (e) => {
@@ -80,7 +80,7 @@ const Track = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="badadibba">
         <div className="form-container">
           <form className="Form">
@@ -88,17 +88,23 @@ const Track = () => {
               type="text"
               name="complaint_Ticket"
               id="complaint_Ticket"
-              placeholder="Enter ticket id u want to track / ଆପଣ ଟ୍ରାକ୍ କରିବାକୁ ଚାହୁଁଥିବା ଟିକେଟ୍ id ପ୍ରବେଶ କରନ୍ତୁ "
+              placeholder={
+                language === "English"
+                  ? "Enter ticket id u want to track"
+                  : "ଆପଣ ଟ୍ରାକ୍ କରିବାକୁ ଚାହୁଁଥିବା ଟିକେଟ୍ id ପ୍ରବେଶ କରନ୍ତୁ "
+              }
               onChange={handleChange}
             />
             <button onClick={handleSubmit} id="trs">
-              Track
+              {language === "English" ? "Track" : "ଟ୍ରାକ୍ କରନ୍ତୁ"}
             </button>
           </form>
         </div>
         <table id="tab" className="tab"></table>
         <button onClick={handleResolve} id="upperauth">
-          Push to higher authorities
+          {language === "English"
+            ? "Push to higher authorities"
+            : "ଉଚ୍ଚ କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ ଠେଲିଦିଅ"}
         </button>
       </div>
     </div>

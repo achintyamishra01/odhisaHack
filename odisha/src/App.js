@@ -10,20 +10,30 @@ import CommitteelDashboard from "./components/committee/CommitteeDashboard";
 import Mvp from "./components/dutta/Mvp";
 import IndustryDashboard from "./components/industry/IndustryDashboard";
 import IndustryLogin from "./components/industry/IndustryLogin";
-
+import {useState} from "react"
 function App() {
+  const [language, setlanguage] = useState("English")
+  const changeLanguage=()=>{
+    if (language==="English") {
+      setlanguage("odiya")
+    }
+    else{
+    setlanguage("English")
+    }
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Complain />} />
-        <Route path="/committee" element={<Committee />} />
-        <Route path="/municipal" element={<Municipal />} />
-        <Route path="/track" element={<Track />} />
-        <Route path="/industry" element={<Industry />} />
-        <Route path="/municipalDashboard" element={<MunicipalDashboard />} />
-        <Route path="/committeeDashboard" element={<CommitteelDashboard />} />
-        <Route path="/indDash" element={<IndustryDashboard />} />
-        <Route path="/industryLogin" element={<IndustryLogin />} />
+        <Route path="/" element={<Complain changeLanguage={changeLanguage} language={language} />} />
+        <Route path="/committee" element={<Committee changeLanguage={changeLanguage} language={language} />} />
+        <Route path="/municipal" element={<Municipal changeLanguage={changeLanguage} language={language}  />} />
+        <Route path="/track" element={<Track changeLanguage={changeLanguage} language={language}  />} />
+        <Route path="/industry" element={<Industry changeLanguage={changeLanguage} language={language}  />} />
+        <Route path="/municipalDashboard" element={<MunicipalDashboard changeLanguage={changeLanguage} language={language} />} />
+        <Route path="/committeeDashboard" element={<CommitteelDashboard changeLanguage={changeLanguage} language={language} />} />
+        <Route path="/indDash" element={<IndustryDashboard changeLanguage={changeLanguage} language={language} />} />
+        <Route path="/industryLogin" element={<IndustryLogin changeLanguage={changeLanguage} language={language} />} />
         <Route path="/mvp" element={<Mvp />} />
       </Routes>
     </BrowserRouter>
