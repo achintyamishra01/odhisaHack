@@ -5,7 +5,7 @@ import "../committee/committee.css";
 import "./industry.css";
 import { useNavigate } from "react-router-dom";
 
-const IndustryDashboard = ({changeLanguage,language}) => {
+const IndustryDashboard = ({ changeLanguage, language }) => {
   const [pendingData, setPendingData] = useState([]);
   const navigate = useNavigate();
 
