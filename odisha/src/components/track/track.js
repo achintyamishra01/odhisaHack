@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./track.css";
 import Navbar from "../navbar/Navbar";
 
-const Track = () => {
+const Track = ({changeLanguage,language}) => {
   var ticket, status, address, name, pin;
   const [ticketId, setticketId] = useState("");
   const handleChange = (e) => {

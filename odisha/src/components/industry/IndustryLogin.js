@@ -3,7 +3,7 @@ import Navbar from "../navbar/Navbar";
 import "../committee/committee.css";
 import { useNavigate } from "react-router-dom";
 
-const IndustryLogin = () => {
+const IndustryLogin = ({changeLanguage,language}) => {
 
     const navigate = useNavigate();
 

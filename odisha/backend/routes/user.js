@@ -96,7 +96,7 @@ router.post("/track", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async ( req, res) => {
   const check = await municipal.findOne({ name: req.body.name });
 
   if (check == null) {

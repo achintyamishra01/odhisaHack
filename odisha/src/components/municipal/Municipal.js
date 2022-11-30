@@ -3,7 +3,7 @@ import Navbar from "../navbar/Navbar";
 import "./municipal.css";
 import { useNavigate } from "react-router-dom";
 
-const Municipal = () => {
+const Municipal = ({changeLanguage,language}) => {
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();

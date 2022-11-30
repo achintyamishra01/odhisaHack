@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./industry.css";
 
-function Industry() {
+function Industry({changeLanguage,language}) {
   const [issue, setIssue] = useState("");
   const [industry_name, setIndustry_name] = useState("");
   const [locality, setLocality] = useState("");
@@ -16,7 +16,7 @@ function Industry() {
 
     const res = await fetch("/api/complainIndustry", {
       method: "POST",
-      headers: {
+      headers: { 
         "content-type": "application/json",
       },
       body: JSON.stringify(data),

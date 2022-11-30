@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./complain.css";
 
-const Complain = () => {
+const Complain = ({changeLanguage,language}) => {
   const [name, setname] = useState("");
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
@@ -10,6 +10,7 @@ const Complain = () => {
   const [e_waste, sete_waste] = useState(false);
   const [gov_com, setgov_com] = useState(false);
   const [municipality, setmunicipality] = useState("");
+
 
   const autoComplete = async (pin) => {
     const d = await fetch("/api/municipality", {
@@ -81,16 +82,19 @@ const Complain = () => {
   return (
     <div>
       <Navbar></Navbar>
+      <button onClick={changeLanguage}>Change Language to {language==="English"?"odiya":"English"}</button>
       <div id="cformOuter">
         <div className="complainForm">
           <form action="" method="POST" className="Form" id="compfor">
-            <h2>Service Request</h2>
+            <h2>{language==="English"?"Service Request":"ସେବା ଅନୁରୋଧ"}</h2>
+            
+            
             <input
               type="text"
               id="name"
               name="name"
               value={name}
-              placeholder="Enter your name / ତୁମର ନାମ ପ୍ରବେଶ କର"
+              placeholder={language==="English"?"Name":"ନାମ"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -100,7 +104,8 @@ const Complain = () => {
               id="phone"
               name="phone"
               value={phone}
-              placeholder="Enter your phone /  ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ"
+              placeholder={language==="English"?"phone":"ଫୋନ୍ |"}
+             
               className="ipfield"
               onChange={handleChange}
             />
@@ -110,7 +115,8 @@ const Complain = () => {
               id="address"
               name="address"
               value={address}
-              placeholder="Enter your address / ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ"
+              placeholder=
+              {language==="English"?"address":" ଠିକଣା"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -120,7 +126,8 @@ const Complain = () => {
               id="pincode"
               name="pincode"
               value={pincode}
-              placeholder="Enter your pincode / ପିଙ୍କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ"
+              placeholder=
+              {language==="English"?"pincode":"ପିଙ୍କୋଡ୍"}
               className="ipfield"
               onChange={handleChange}
             />
@@ -131,12 +138,13 @@ const Complain = () => {
               name="municipality"
               className="ipfield"
               value={municipality}
-              placeholder="Municipal Corportion / ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"
+              placeholder={language==="English"?"Municipal Corportion":"ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍"}
             />
             <br />
             <div id="cbox">
               <span>
-                <label htmlFor="ewastecheckbox">Contains e-Waste ?</label>
+                <label htmlFor="ewastecheckbox">{language==="English"?"Contains e-Waste ?":"ଇବର୍ଜ୍ୟବସ୍ତୁ"}</label>
+                
               </span>
               <span>
                 <input
@@ -150,7 +158,8 @@ const Complain = () => {
             </div>
             <br></br>
             <button onClick={handleSubmit} id="raise">
-              Submit
+              {language==="English"?"Submit":"ଦାଖଲ କରନ୍ତୁ |"}
+              
             </button>
           </form>
         </div>
