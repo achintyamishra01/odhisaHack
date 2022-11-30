@@ -41,7 +41,7 @@ const Navbar = ({ changeLanguage, language }) => {
           </li>
         </ul>
 
-        <button onClick={changeLanguage}>
+        <button onClick={changeLanguage} id="langbut">
           {language === "English"
             ? "Change Language to odiya"
             : "ଭାଷାକୁ ଇଂରାଜୀରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ"}

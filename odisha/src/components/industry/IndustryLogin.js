@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "../committee/committee.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 const IndustryLogin = ({ changeLanguage, language }) => {
@@ -33,16 +35,48 @@ const IndustryLogin = ({ changeLanguage, language }) => {
     const content = await res.json();
     console.log(content);
     if (content.success) {
+      toast.success('Login Successfully', {
+        position: "top-left",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       localStorage.setItem("industry_name", email);
-      navigate("/indDash");
-      console.log(content);
+      setTimeout(() => {
+        navigate("/indDash");
+      }, 2000);
     } else {
-      alert("Invalid credentials");
+      toast.error("Invalid credentials", {
+        position: "top-left",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-left"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
         <div className="complainForm">

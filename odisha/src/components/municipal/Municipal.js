@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./municipal.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Municipal = ({ changeLanguage, language }) => {
   const [name, setname] = useState("");
@@ -32,10 +34,31 @@ const Municipal = ({ changeLanguage, language }) => {
     const c = await res.json();
     console.log(c.success);
     if (c.success) {
+      toast.success('Login Successfully', {
+        position: "top-left",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       localStorage.setItem("municipal", name);
-      navigate("/municipalDashboard");
+      setTimeout(() => {
+        navigate("/municipalDashboard");
+      }, 2000);
     } else {
-      alert(c.message);
+      toast.error("Invalid credentials", {
+        position: "top-left",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
     setname("");
     setpassword("");
@@ -43,6 +66,18 @@ const Municipal = ({ changeLanguage, language }) => {
 
   return (
     <div>
+      <ToastContainer
+        position="top-left"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
         <div className="complainForm">

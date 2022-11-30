@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "../complain/complain.css";
 
 const CommitteelDashboard = () => {
+
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
   const [data3, setdata3] = useState([]);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!localStorage.getItem("committee")) {
       navigate("/committee");
@@ -46,6 +49,7 @@ const CommitteelDashboard = () => {
       setdata2(c.data);
     }
   };
+
   const fetchVerifiedIndustryComplaints = async () => {
     const res = await fetch("/api/fetchVerifiedIndustryComplaints", {
       method: "POST",
@@ -83,7 +87,7 @@ const CommitteelDashboard = () => {
   async function rejectIndustryComplaints(ticketId) {
     let tId = { ticketId };
 
-    const res = await fetch("/api/rejectIndustryCompalints", {
+    const res = await fetch("/api/rejectIndustryComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -99,9 +103,10 @@ const CommitteelDashboard = () => {
       alert("Something went wrong");
     }
   }
+
   async function verifyIndustryComplaints(ticketId) {
     let tId = { ticketId };
-    const res = await fetch("/api/verifyIndustryCompalints", {
+    const res = await fetch("/api/verifyIndustryComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -117,6 +122,7 @@ const CommitteelDashboard = () => {
       alert("Something went wrong");
     }
   }
+  
   const logout = async () => {
     localStorage.removeItem("committee");
     window.location.reload();
