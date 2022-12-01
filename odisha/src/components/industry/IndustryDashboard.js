@@ -53,17 +53,16 @@ const IndustryDashboard = ({ changeLanguage, language }) => {
             <li>Locality : {item.locality}</li>
             <li>Pincode : {item.pincode}</li>
             <li>
-              Status :{" "}
-              <span>
-                <button id="verify" className="accbutt">
-                  &#x2713;
-                </button>
-              </span>
-              <span>
-                <button id="reject" className="accbutt">
-                  &#x2717;
-                </button>
-              </span>
+              Attach a valid proof:
+              <form
+              method="POST"
+              action="/api/uploadProof"
+              encType="multipart/form-data"
+              // id="ind-comp-form"
+              >
+                <input type="file" id="testImage" name="image" />
+                <input type="submit" id="icbut" />
+              </form>
             </li>
           </ul>
         </div>

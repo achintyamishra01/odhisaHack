@@ -26,6 +26,14 @@ const industrySchema = new mongoose.Schema({
     },
     myFile:{
         type:String
+    },
+    pdfUpload:{
+        type:String,
+        default:""
+    },
+    SPCB:{
+        type:Boolean,
+        default:false
     }
 })
 
