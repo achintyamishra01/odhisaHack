@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./municipal.css";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Municipal = ({ changeLanguage, language }) => {
   const [name, setname] = useState("");
@@ -34,7 +34,7 @@ const Municipal = ({ changeLanguage, language }) => {
     const c = await res.json();
     console.log(c.success);
     if (c.success) {
-      toast.success('Login Successfully', {
+      toast.success("Login Successfully", {
         position: "top-left",
         autoClose: 1000,
         hideProgressBar: false,
@@ -80,13 +80,18 @@ const Municipal = ({ changeLanguage, language }) => {
       />
       <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
-        <div className="complainForm">
+        <div id="mcf">
           <form action="" method="POST" className="Form" id="compfor">
             <h2>
               {language === "odiya"
                 ? "ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍ ଲଗଇନ୍"
                 : "Municipal Corporation Login"}
             </h2>
+            <img
+              src={require("../../Assets/form-img.png")}
+              className="form-img"
+              alt=""
+            />
             <label htmlFor="name">
               {language === "odiya"
                 ? "ମ୍ୟୁନିସିପାଲିଟି କର୍ପୋରେସନ୍ ବାଛନ୍ତୁ"

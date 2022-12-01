@@ -28,3 +28,10 @@
   transform: scale(1.07);
   transition: 4ms;
 }
+.form-img {
+  width: 100%;
+  height: 15rem;
+}
+#raise {
+  margin-bottom: 4vh;
+}

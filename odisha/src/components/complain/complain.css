@@ -11,7 +11,7 @@
   padding-top: 4rem;
 }
 .complainForm {
-  height: 96vh;
+  height: fit-content;
   width: 30vw;
   background-color: white;
   border: 2px solid gray;
@@ -53,22 +53,44 @@
   background-color: black;
   padding: 0.5rem 1.5rem;
   border-radius: 7px;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
-#ai{
-  width:90%;
-  height:1rem;
-  margin:auto;
+#ai {
+  width: fit-content;
+  height: 1rem;
+  margin: auto;
   border: 1px solid black;
   border-radius: 10px;
-  padding:0.4rem 0.7rem;
+  padding: 0.4rem 0.7rem;
   text-decoration: none;
-  margin-top:1rem;
-  margin-bottom:1rem;
-  color:white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: white;
   background-color: red;
 }
 
-#ai:active{
-  color:white;
+#ai:active {
+  color: white;
+}
+.mostout,
+.awout {
+  background-color: #ebf9db;
+  padding-bottom: 3vh;
+}
+.awareness {
+  width: 70vw;
+  height: fit-content;
+  /* height:94vh; */
+  background-color: white;
+  margin: 2rem auto;
+  padding: 5vh 5vw;
+  display: flex;
+  justify-content: space-between;
+}
+.imginf {
+  height: 17rem;
+  width: 15rem;
+}
+.textinfo {
+  width: 40%;
 }

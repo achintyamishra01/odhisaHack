@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "../committee/committee.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const IndustryLogin = ({ changeLanguage, language }) => {
@@ -35,7 +35,7 @@ const IndustryLogin = ({ changeLanguage, language }) => {
     const content = await res.json();
     console.log(content);
     if (content.success) {
-      toast.success('Login Successfully', {
+      toast.success("Login Successfully", {
         position: "top-left",
         autoClose: 1000,
         hideProgressBar: false,
@@ -79,11 +79,16 @@ const IndustryLogin = ({ changeLanguage, language }) => {
       />
       <Navbar changeLanguage={changeLanguage} language={language}></Navbar>
       <div id="cformOuter">
-        <div className="complainForm">
+        <div className="complainForm" id="cf">
           <form action="" method="POST" className="Form" id="compfor">
             <h2>
               {language === "odiya" ? "ଇଣ୍ଡଷ୍ଟ୍ରି ଲଗଇନ୍" : "Industry Login"}
             </h2>
+            <img
+              src={require("../../Assets/form-img.png")}
+              className="form-img"
+              alt=""
+            />
             <label htmlFor="name">
               {language === "odiya" ? "ଶିଳ୍ପ ନାମ" : "Industry Name"}:
             </label>
