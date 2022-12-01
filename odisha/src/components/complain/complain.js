@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./complain.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Complain = ({changeLanguage,language}) => {
   const [name, setname] = useState("");
@@ -31,7 +33,7 @@ const Complain = ({changeLanguage,language}) => {
       }
     }
   };
-
+  
   const handleChange = (e) => {
     if (e.target.name === "name") {
       setname(e.target.value);
@@ -56,11 +58,7 @@ const Complain = ({changeLanguage,language}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(pincode);
-    console.log(phone);
-    console.log(municipality);
-    console.log(name);
-    console.log(e_waste);
+  
     const ele = { name, phone, address, pincode, municipality, e_waste };
 
     const res = await fetch("/api/complain", {
@@ -72,6 +70,15 @@ const Complain = ({changeLanguage,language}) => {
     });
     const c = await res.json();
     console.log(c);
+    toast.success("Complaint registered sucessfully", {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     setaddress("")
     setmunicipality("")
     setphone("")
@@ -80,9 +87,21 @@ const Complain = ({changeLanguage,language}) => {
   };
 
   return (
+      <>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div>
-      <Navbar></Navbar>
-      <button onClick={changeLanguage}>Change Language to {language==="English"?"odiya":"English"}</button>
+      <Navbar  changeLanguage={changeLanguage} language={language} ></Navbar>
+      
       <div id="cformOuter">
         <div className="complainForm">
           <form action="" method="POST" className="Form" id="compfor">
@@ -168,6 +187,7 @@ const Complain = ({changeLanguage,language}) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

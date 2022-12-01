@@ -325,7 +325,7 @@ router.post("/resolveGovComplaints", async (req, res) => {
 
 router.post("/fetchPendingIndustryComplaints", async (req, res) => {
   let d = await industry.find({
-    industry_name: req.body.industry_name,
+  
     status: "pending",
   });
   if (d) {
@@ -356,7 +356,7 @@ router.post("/fetchVerifiedIndustryComplaints", async (req, res) => {
   }
 });
 
-router.post("/rejectIndustryCompalints", async (req, res) => {
+router.post("/rejectIndustryComplaints", async (req, res) => {
   let d = await industry.findOneAndDelete({ ticketId: req.body.ticketId });
   if (d) {
     res
@@ -367,8 +367,9 @@ router.post("/rejectIndustryCompalints", async (req, res) => {
   }
 });
 
-router.post("/verifyIndustryCompalints", async (req, res) => {
-  let d = await industry.findOneAndDelete({ ticketId: req.body.ticketId });
+router.post("/verifyIndustryComplaints", async (req, res) => {
+  let d = await industry.findOneAndUpdate({ ticketId: req.body.ticketId },{status:"verified"});
+  console.log(req.body.ticketId)
   if (d) {
     res
       .status(200)

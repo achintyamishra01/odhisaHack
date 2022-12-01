@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import "./committee.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Committee = () => {
   const navigate=useNavigate();
@@ -34,14 +36,48 @@ const Committee = () => {
     console.log(c);
     if(c.success){
       localStorage.setItem("committee",email)
-      navigate("/committeeDashboard")
+      toast.success("Successfully logged in", {
+        position: "top-left",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        
+        navigate("/committeeDashboard")
+      }, 2000);
     }
     else{
-      alert("invalid credentials")
+      toast.error("Invalid credentials", {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      
+      
     }
   };
 
   return (
+    <>
+    <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div>
       <Navbar></Navbar>
       <div id="cformOuter">
@@ -81,6 +117,7 @@ const Committee = () => {
         </div> */}
       </div>
     </div>
+    </>
   );
 };
 

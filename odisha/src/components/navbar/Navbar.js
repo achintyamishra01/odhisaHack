@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = ({changeLanguage,language}) => {
   return (
     <div>
       <nav>
@@ -30,6 +30,7 @@ const Navbar = () => {
             <Link to="/Municipal">Municipal</Link>
           </li>
         </ul>
+        <button onClick={changeLanguage}>Change Language to {language==="English"?"odiya":"English"}</button>
       </nav>
     </div>
   );

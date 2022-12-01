@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../complain/complain.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
@@ -83,7 +85,7 @@ const CommitteelDashboard = () => {
   async function rejectIndustryComplaints(ticketId) {
     let tId = { ticketId };
 
-    const res = await fetch("/api/rejectIndustryCompalints", {
+    const res = await fetch("/api/rejectIndustryComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -101,7 +103,7 @@ const CommitteelDashboard = () => {
   }
   async function verifyIndustryComplaints(ticketId) {
     let tId = { ticketId };
-    const res = await fetch("/api/verifyIndustryCompalints", {
+    const res = await fetch("/api/verifyIndustryComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -146,7 +148,17 @@ const CommitteelDashboard = () => {
   };
 
   return (
-    <>
+    <><ToastContainer
+    position="top-left"
+    autoClose={2000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+  />
       <div>
         <div id="gchead">
           <a href="/">
