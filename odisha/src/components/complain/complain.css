@@ -88,9 +88,43 @@
   justify-content: space-between;
 }
 .imginf {
-  height: 17rem;
-  width: 15rem;
+  height: 90%;
+  width: 70%;
+  margin-left: 2rem;
 }
 .textinfo {
+  width: 50%;
+
+  font-family: "Inter", sans-serif;
+}
+.h1 {
+  color: #2900ce;
+
+  font-family: "Inter", sans-serif;
+}
+.imnf {
+  height: 2rem;
+  width: 2rem;
+}
+.did {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+.abra1 {
   width: 40%;
+}
+.abra2 {
+  margin-left: 10vw;
+  width: 60%;
+}
+.awareness2 {
+  display: flex;
+  justify-content: space-around;
+  width: 70vw;
+  height: fit-content;
+  /* height:94vh; */
+  background-color: white;
+  margin: auto;
+  padding-left: 10vw;
 }

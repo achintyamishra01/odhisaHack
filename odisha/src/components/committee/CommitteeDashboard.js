@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../complain/complain.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../counter/counter.css";
 
 const CommitteelDashboard = () => {
   const [data1, setdata1] = useState([]);
@@ -21,6 +22,34 @@ const CommitteelDashboard = () => {
   }, []);
 
   const fetchComplaints = async () => {
+    window.onload = function () {
+      const c = document.querySelectorAll(".ch");
+      c.forEach((item) => {
+        item.innerText = "0";
+
+        const updateCounter = () => {
+          const target = +item.getAttribute("data-target");
+          const a = +item.innerText;
+
+          const increment = target / 2600;
+          if (a < target) {
+            item.innerText = `${Math.ceil(a + increment)}`;
+            setTimeout(updateCounter, 30);
+          } else {
+            item.innerText = target;
+          }
+        };
+        updateCounter();
+      });
+      const arr = new Array("Raised", "Verified", "Resolved");
+      const b = document.querySelectorAll(".tex");
+      let i = 0;
+      b.forEach((item) => {
+        item.innerText = arr[i];
+        i++;
+      });
+    };
+
     const res = await fetch("/api/fetchGovComplaints", {
       method: "POST",
       headers: {
@@ -153,17 +182,18 @@ const CommitteelDashboard = () => {
   };
 
   return (
-    <><ToastContainer
-    position="top-left"
-    autoClose={2000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-  />
+    <>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div>
         <div id="gchead">
           <a href="/">
@@ -177,6 +207,50 @@ const CommitteelDashboard = () => {
           </div>
         </div>
         <div id="notelse">
+          <br />
+          <br />
+          <div className="count-container">
+            <div className="col-container">
+              <div className="counter-box">
+                <img
+                  src={require("../../Assets/a.jpeg")}
+                  className="cim"
+                  alt=""
+                />
+                <h2 data-target="12" class="ch">
+                  12
+                </h2>
+                <h4 class="tex">Complaints Raised</h4>
+              </div>
+            </div>
+            <div className="col-container">
+              <div className="counter-box">
+                <img
+                  src={require("../../Assets/b.jpeg")}
+                  className="cim"
+                  alt=""
+                />
+                <h2 data-target="7" class="ch">
+                  7
+                </h2>
+                <h4 class="tex">Complaints Resolved</h4>
+              </div>
+            </div>
+            <div className="col-container">
+              <div className="counter-box">
+                <img
+                  src={require("../../Assets/c.jpeg")}
+                  className="cim"
+                  alt=""
+                />
+                <h2 data-target="5" class="ch">
+                  5
+                </h2>
+                <h4 class="tex">Unresolved</h4>
+              </div>
+            </div>
+          </div>
+
           <div className="container">
             <div className="bloc-tabs">
               <button

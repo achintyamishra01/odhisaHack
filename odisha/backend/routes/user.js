@@ -39,7 +39,7 @@ const arr = [
 
 require("dotenv").config();
 
-// const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
+const client = new twilio(process.env.ACC_SID, process.env.AUTH_TOKEN); // UNCOMMENT THIS
 
 // Storage
 let file_name;
@@ -50,7 +50,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     file_name = file.originalname;
     cb(null, file.originalname);
-  }
+  },
 });
 
 const upload = multer({
@@ -73,10 +73,10 @@ router.post("/complain", (req, res) => {
     gov_com: req.body.gov_com,
     ticketId: ticketId,
     municipality: municipality,
-    complain: complain
+    complain: complain,
   });
 
-  // send_SMS(req.body.name, phone, ticketId); // UNCOMMENT THIS
+  send_SMS(req.body.name, phone, ticketId); // UNCOMMENT THIS
   res.status(200).json({
     success: true,
     message:
@@ -98,7 +98,7 @@ router.post("/track", async (req, res) => {
   }
 });
 
-router.post("/register", async ( req, res) => {
+router.post("/register", async (req, res) => {
   const check = await municipal.findOne({ name: req.body.name });
 
   if (check == null) {
@@ -266,9 +266,7 @@ router.post("/complainIndustry", upload.single("image"), async (req, res) => {
     myFile: file_name,
   });
 
-  res.send(
-    "Successfully registered your industry complain"
-  );
+  res.send("Successfully registered your industry complain");
   // res.status(200).json({
   //   success: true,
   //   data: null,
@@ -330,7 +328,6 @@ router.post("/resolveGovComplaints", async (req, res) => {
 
 router.post("/fetchPendingIndustryComplaints", async (req, res) => {
   let d = await industry.find({
-  
     status: "pending",
   });
   if (d) {
@@ -373,8 +370,11 @@ router.post("/rejectIndustryComplaints", async (req, res) => {
 });
 
 router.post("/verifyIndustryComplaints", async (req, res) => {
-  let d = await industry.findOneAndUpdate({ ticketId: req.body.ticketId },{status:"verified"});
-  console.log(req.body.ticketId)
+  let d = await industry.findOneAndUpdate(
+    { ticketId: req.body.ticketId },
+    { status: "verified" }
+  );
+  console.log(req.body.ticketId);
   if (d) {
     res
       .status(200)
@@ -384,17 +384,27 @@ router.post("/verifyIndustryComplaints", async (req, res) => {
   }
 });
 
-router.post('/fetchRespectiveVerifiedComplaints',(req,res)=>{
+router.post("/fetchRespectiveVerifiedComplaints", (req, res) => {
   console.log(req.body);
-  industry.find({industry_name:req.body.industry_name,status:req.body.status},(err,found)=>{
-    if(err){
-      res.status(200).json({success:"false",message:"No verified complaints"})
+  industry.find(
+    { industry_name: req.body.industry_name, status: req.body.status },
+    (err, found) => {
+      if (err) {
+        res
+          .status(200)
+          .json({ success: "false", message: "No verified complaints" });
+      } else {
+        res
+          .status(200)
+          .json({
+            success: "true",
+            data: found,
+            message: "Found verified complaints",
+          });
+        console.log(found);
+      }
     }
-    else{
-      res.status(200).json({success:"true",data:found,message:"Found verified complaints"})
-      console.log(found);
-    }
-  });
+  );
 });
 
 module.exports = router;

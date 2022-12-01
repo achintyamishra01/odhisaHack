@@ -10,31 +10,89 @@ import CommitteelDashboard from "./components/committee/CommitteeDashboard";
 import Mvp from "./components/dutta/Mvp";
 import IndustryDashboard from "./components/industry/IndustryDashboard";
 import IndustryLogin from "./components/industry/IndustryLogin";
-import {useState} from "react"
+import { useState } from "react";
+import Counter from "./components/counter/Counter";
 function App() {
-  const [language, setlanguage] = useState("English")
-  const changeLanguage=()=>{
-    if (language==="English") {
-      setlanguage("odiya")
+  const [language, setlanguage] = useState("English");
+  const changeLanguage = () => {
+    if (language === "English") {
+      setlanguage("odiya");
+    } else {
+      setlanguage("English");
     }
-    else{
-    setlanguage("English")
-    }
-  }
+  };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Complain changeLanguage={changeLanguage} language={language} />} />
-        <Route path="/committee" element={<Committee changeLanguage={changeLanguage} language={language} />} />
-        <Route path="/municipal" element={<Municipal changeLanguage={changeLanguage} language={language}  />} />
-        <Route path="/track" element={<Track changeLanguage={changeLanguage} language={language}  />} />
-        <Route path="/industry" element={<Industry changeLanguage={changeLanguage} language={language}  />} />
-        <Route path="/municipalDashboard" element={<MunicipalDashboard changeLanguage={changeLanguage} language={language} />} />
-        <Route path="/committeeDashboard" element={<CommitteelDashboard changeLanguage={changeLanguage} language={language} />} />
-        <Route path="/indDash" element={<IndustryDashboard changeLanguage={changeLanguage} language={language} />} />
-        <Route path="/industryLogin" element={<IndustryLogin changeLanguage={changeLanguage} language={language} />} />
+        <Route
+          path="/"
+          element={
+            <Complain changeLanguage={changeLanguage} language={language} />
+          }
+        />
+        <Route
+          path="/committee"
+          element={
+            <Committee changeLanguage={changeLanguage} language={language} />
+          }
+        />
+        <Route
+          path="/municipal"
+          element={
+            <Municipal changeLanguage={changeLanguage} language={language} />
+          }
+        />
+        <Route
+          path="/track"
+          element={
+            <Track changeLanguage={changeLanguage} language={language} />
+          }
+        />
+        <Route
+          path="/industry"
+          element={
+            <Industry changeLanguage={changeLanguage} language={language} />
+          }
+        />
+        <Route
+          path="/municipalDashboard"
+          element={
+            <MunicipalDashboard
+              changeLanguage={changeLanguage}
+              language={language}
+            />
+          }
+        />
+        <Route
+          path="/committeeDashboard"
+          element={
+            <CommitteelDashboard
+              changeLanguage={changeLanguage}
+              language={language}
+            />
+          }
+        />
+        <Route
+          path="/indDash"
+          element={
+            <IndustryDashboard
+              changeLanguage={changeLanguage}
+              language={language}
+            />
+          }
+        />
+        <Route
+          path="/industryLogin"
+          element={
+            <IndustryLogin
+              changeLanguage={changeLanguage}
+              language={language}
+            />
+          }
+        />
         <Route path="/mvp" element={<Mvp />} />
+        <Route path="/ct" element={<Counter />} />
       </Routes>
     </BrowserRouter>
   );

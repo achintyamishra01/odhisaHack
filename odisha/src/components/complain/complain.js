@@ -33,7 +33,7 @@ const Complain = ({ changeLanguage, language }) => {
       }
     }
   };
-  
+
   const handleChange = (e) => {
     if (e.target.name === "name") {
       setname(e.target.value);
@@ -266,40 +266,93 @@ const Complain = ({ changeLanguage, language }) => {
           <div className="awout">
             <div className="awareness">
               <div className="textinfo">
+                <h1 class="h1">
+                  Want to check for e-waste? Use Swacchta to get to know
+                </h1>
                 <h2>What is E-waste?</h2>
-                <br />
                 Any electronic product or accessory which has reached the end of
                 its useful life is called E-waste. For example, computer
                 accessories, batteries, discarded or obsolete Air Conditioners,
                 TV, Washing Machine, Refrigerator, Fluorescent and other
                 Mercury-containing lamps, etc.
-                <br />
-                <br />
                 <h3>Want to check for e-waste? Use Swacchta to get to know</h3>
+                <h2>
+                  On an average, 6 kg of e-waste is generated from every
+                  household and this e-waste can generate revenue of upto RS
+                  1500.
+                </h2>
               </div>
               <div className="imageinfo">
                 <img
-                  src={require("../../Assets/greenman.png")}
+                  src={require("../../Assets/ewaste.png")}
                   alt=""
                   className="imginf"
                 />
               </div>
             </div>
-            <div className="awareness">
-              <div className="imageinfo">
-                <img
-                  src={require("../../Assets/garbagebox.png")}
-                  alt=""
-                  className="imginf"
-                />
+            <div className="awareness2">
+              <div className="abra1">
+                <div className="did">
+                  <b>
+                    <u>
+                      <h1>Do's</h1>
+                    </u>
+                  </b>
+                  <img
+                    src={require("../../Assets/green_tick.png")}
+                    alt=""
+                    className="imnf"
+                  />
+                </div>
+                <ul>
+                  <li>
+                    DO determine if your waste is hazardous: Is it an Ignitable,
+                    Corrosive, Reactive, Toxic or a listed waste?
+                  </li>
+                  <li>
+                    {" "}
+                    DO select a chemical waste accumulation area that is out of
+                    the way of normal activities easily identifiable and safely
+                    accessible.
+                  </li>
+                  <li>
+                    {" "}
+                    DO label each waste container with "Hazardous Waste" and the
+                    specific names of the waste constituents.{" "}
+                  </li>
+                  <li>
+                    DO store waste in compatible containers with an unbroken
+                    screw-top lid.
+                  </li>
+                </ul>
               </div>
-              <div className="textinfo">
-                <h2>Recycle E-waste and help Odisha and India grow.</h2>
-                <br />
-                Recycling e-waste can generate a substantial amount of revenue.
-                According to a study, 5 tons of e-waste can generate a profit of
-                around Rs 2,00,000.
-                <br />
+              <div>
+                <div className="abra2">
+                  <div className="did">
+                    <b>
+                      <u>
+                        <h1>Don'ts</h1>
+                      </u>
+                    </b>
+                    <img
+                      src={require("../../Assets/red_cross.png")}
+                      alt=""
+                      className="imnf"
+                    />
+                  </div>
+                  <ul>
+                    <li>DO NOT pour chemicals or solvents down the drain.</li>
+                    <li>DO NOT evaporate chemical wastes in a fume hood.</li>
+                    <li>DO NOT abandon chemicals in the laboratory.</li>
+                    <li>
+                      DO NOT mix various waste chemicals indiscriminately.
+                    </li>
+                    <li>
+                      DO NOT throw chemicals into trash containers until you
+                      determine if waste is non-hazardous.
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
