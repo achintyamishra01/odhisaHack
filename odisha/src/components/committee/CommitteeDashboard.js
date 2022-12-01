@@ -157,6 +157,44 @@ const CommitteelDashboard = () => {
     localStorage.removeItem("committee");
     window.location.reload();
   };
+  async function resolveVerifiedIndustryComplaints(ticketId){
+    let tId = { ticketId };
+    const res = await fetch("/api/resolveVerifiedIndustryComplaints", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tId),
+    });
+    const d = await res.json();
+    console.log(d);
+    if (d.success) {
+      console.log("reloading");
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+    }
+  }
+  async function pushComplaintToSPCB(ticketId){
+    //add toast
+    let tId = { ticketId };
+    const res = await fetch("/api/pushComplaintToSPCB", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tId),
+    });
+    const d = await res.json();
+    console.log(d);
+    if (d.success) {
+      console.log("reloading");
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+    }
+  }
+
   const renderList = data1.map((item, index) => (
     <tr>
       <td className="trackd">{item.ticketId}</td>
@@ -391,10 +429,10 @@ const CommitteelDashboard = () => {
                       {/* {item.name} {item.address} */}
                       <tr>
                         <th className="trackh">TicketID</th>
-                        <th className="trackh">Municipality</th>
-                        <th className="trackh">Complainee</th>
-                        <th className="trackh">Phone</th>
-                        <th className="trackh">Resolution</th>
+                        <th className="trackh">Issue</th>
+                        <th className="trackh">Industry Name</th>
+                        <th className="trackh">Status</th>
+                        <th className="trackh">View Reports</th>
                       </tr>
                       {data3.map((item) => (
                         <tr>
@@ -402,22 +440,23 @@ const CommitteelDashboard = () => {
                           <td className="trackd">{item.issue}</td>
                           <td className="trackd">{item.industry_name}</td>
                           <td className="trackd">{item.status}</td>
-                          <td className="trackd">
-                            <span>
-                              <button id="verify" className="accbutt">
-                                &#x2713;
-                              </button>
-                            </span>
-                            <span>
-                              <button
+                          <td>
+                            <span>{item.pdfUpload==""?"Pending response":<a id="pdf" href={"http://localhost:4000/uploads/" + item.pdfUpload } target="_">View Pdf</a>}</span>
+                          </td>
+                          {item.pdfUpload!=="" && <td className="trackd"><button
+                                id="verify"
+                                className="accbutt"
+                                onClick={() =>
+                                  resolveVerifiedIndustryComplaints(item.ticketId)
+                                }
+                              >Resolved</button></td>}
+                             { item.pdfUpload!=="" &&<td className="trackd"><button
                                 id="reject"
                                 className="accbutt"
-                                onClick={() => {}}
-                              >
-                                &#x2717;
-                              </button>
-                            </span>
-                          </td>
+                                onClick={() =>
+                                  pushComplaintToSPCB(item.ticketId)
+                                }
+                              >SPCB</button></td>}
                         </tr>
                       ))}
                     </table>
