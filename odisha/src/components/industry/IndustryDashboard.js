@@ -22,10 +22,11 @@ const IndustryDashboard = ({changeLanguage,language}) => {
   }, []);
 
   const fetchPending = async () => {
-    const industry_name = localStorage.getItem("industry_name");
-    const data = { industry_name };
+    let industry_name = localStorage.getItem("industry_name");
+    let status = "verified";
+    const data = { industry_name, status };
 
-    const res = await fetch("/api/fetchPendingIndustryComplaints", {
+    const res = await fetch("/api/fetchRespectiveVerifiedComplaints", {
       method: "POST",
       headers: {
         "content-type": "application/json",

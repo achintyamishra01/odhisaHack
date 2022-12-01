@@ -380,4 +380,17 @@ router.post("/verifyIndustryComplaints", async (req, res) => {
   }
 });
 
+router.post('/fetchRespectiveVerifiedComplaints',(req,res)=>{
+  console.log(req.body);
+  industry.find({industry_name:req.body.industry_name,status:req.body.status},(err,found)=>{
+    if(err){
+      res.status(200).json({success:"false",message:"No verified complaints"})
+    }
+    else{
+      res.status(200).json({success:"true",data:found,message:"Found verified complaints"})
+      console.log(found);
+    }
+  });
+});
+
 module.exports = router;
