@@ -5,7 +5,7 @@ import "../committee/committee.css";
 import "./industry.css";
 import { useNavigate } from "react-router-dom";
 
-const IndustryDashboard = ({changeLanguage,language}) => {
+const IndustryDashboard = ({ changeLanguage, language }) => {
   const [pendingData, setPendingData] = useState([]);
   const navigate = useNavigate();
 
@@ -88,9 +88,11 @@ const IndustryDashboard = ({changeLanguage,language}) => {
         <a href="/">
           <img src={require("../../Assets/logo.png")} alt="" />
         </a>
-        <div>
+        <div id="stark">
           <h2>Industry Name</h2>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout} id="clout">
+            Logout
+          </button>
         </div>
       </div>
       <div class="ind-dibba">

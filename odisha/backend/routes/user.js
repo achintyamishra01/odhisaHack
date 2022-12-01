@@ -50,7 +50,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     file_name = file.originalname;
     cb(null, file.originalname);
-  },
+  }
 });
 
 const upload = multer({
@@ -58,10 +58,10 @@ const upload = multer({
 });
 
 router.post("/complain", (req, res) => {
-  console.log(req.body.pincode);
   let pincode = parseInt(req.body.pincode);
   let phone = parseInt(req.body.phone);
   let municipality = req.body.municipality;
+  let complain = req.body.complain;
   let ticketId = Date.now();
 
   const person = user.create({
@@ -73,7 +73,9 @@ router.post("/complain", (req, res) => {
     gov_com: req.body.gov_com,
     ticketId: ticketId,
     municipality: municipality,
+    complain: complain
   });
+
   // send_SMS(req.body.name, phone, ticketId); // UNCOMMENT THIS
   res.status(200).json({
     success: true,
@@ -264,11 +266,14 @@ router.post("/complainIndustry", upload.single("image"), async (req, res) => {
     myFile: file_name,
   });
 
-  res.status(200).json({
-    success: true,
-    data: null,
-    message: "Industry Complaint registered sucessfully",
-  });
+  res.send(
+    "Successfully registered your industry complain"
+  );
+  // res.status(200).json({
+  //   success: true,
+  //   data: null,
+  //   message: "Industry Complaint registered sucessfully",
+  // });
 });
 
 router.post("/municipality", async (req, res) => {

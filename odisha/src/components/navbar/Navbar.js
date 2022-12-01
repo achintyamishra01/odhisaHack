@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
-const Navbar = ({changeLanguage,language}) => {
+const Navbar = ({ changeLanguage, language }) => {
   return (
     <div>
       <nav>
@@ -12,25 +12,40 @@ const Navbar = ({changeLanguage,language}) => {
         <ul id="navul">
           <li>
             {" "}
-            <Link to="/track">Track</Link>
+            <Link to="/track">
+              {language === "odiya" ? "ଟ୍ରାକ୍ କରନ୍ତୁ" : "Track"}
+            </Link>
           </li>
           <li>
             {" "}
-            <Link to="/industry">Industry-Complaint</Link>
+            <Link to="/industry">
+              {language === "odiya" ? "ଶିଳ୍ପ-ଅଭିଯୋଗ" : "Industry-Complaint"}
+            </Link>
           </li>
           <li>
             {" "}
-            <Link to="/industryLogin">Industry</Link>
+            <Link to="/industryLogin">
+              {language === "odiya" ? "ଶିଳ୍ପ" : "Industry"}
+            </Link>
           </li>
           <li>
             {" "}
-            <Link to="/Committee">Committee</Link>
+            <Link to="/Committee">
+              {language === "odiya" ? "କମିଟି" : "Committee"}
+            </Link>
           </li>
           <li>
-            <Link to="/Municipal">Municipal</Link>
+            <Link to="/Municipal">
+              {language === "odiya" ? "ମ୍ୟୁନିସିପାଲିଟି" : "Municipal"}
+            </Link>
           </li>
         </ul>
-        <button onClick={changeLanguage}>Change Language to {language==="English"?"odiya":"English"}</button>
+
+        <button onClick={changeLanguage} id="langbut">
+          {language === "English"
+            ? "Change Language to odiya"
+            : "ଭାଷାକୁ ଇଂରାଜୀରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ"}
+        </button>
       </nav>
     </div>
   );

@@ -67,6 +67,7 @@ const MunicipalDashboard = ({changeLanguage,language}) => {
       <td className="trackd">{item.address}</td>
       <td className="trackd">{item.pincode}</td>
       <td className="trackd">{item.phone}</td>
+      <td className="trackd">{item.complain}</td>
       <td className="trackd">{item.status}</td>
       <td className="trackd">
         <button
@@ -105,6 +106,7 @@ const MunicipalDashboard = ({changeLanguage,language}) => {
                 <th className="trackh">Address</th>
                 <th className="trackh">Pincode</th>
                 <th className="trackh">Phone</th>
+                <th className="trackh">Issue</th>
                 <th className="trackh">Status</th>
                 <th className="trackh">resolved</th>
               </tr>
